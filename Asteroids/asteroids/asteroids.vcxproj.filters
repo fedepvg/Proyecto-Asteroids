@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Archivos de recursos">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="src">
+      <UniqueIdentifier>{4816423a-7e63-4937-9dc6-8aa78f481a8d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Juego">
+      <UniqueIdentifier>{4ddf9eb9-5cd2-4ce0-8beb-2209d421a3b1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Pantallas">
+      <UniqueIdentifier>{95cb44a7-b881-4d9b-a34b-e6c5644ad4bf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Objetos">
+      <UniqueIdentifier>{41d7bf0a-0a6f-4bb3-acf0-7493ec400562}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\src\main.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\juego\juego.cpp">
+      <Filter>src\Juego</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\pantallas\pantallaMenu.cpp">
+      <Filter>src\Pantallas</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\pantallas\pantallaJuego.cpp">
+      <Filter>src\Pantallas</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\pantallas\pantallaCreditos.cpp">
+      <Filter>src\Pantallas</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\pantallas\pantallaGameOver.cpp">
+      <Filter>src\Pantallas</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\objetos\nave.cpp">
+      <Filter>src\Objetos</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\src\juego\juego.h">
+      <Filter>src\Juego</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\pantallas\pantallaMenu.h">
+      <Filter>src\Pantallas</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\pantallas\pantallaJuego.h">
+      <Filter>src\Pantallas</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\pantallas\pantallaGameOver.h">
+      <Filter>src\Pantallas</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\pantallas\pantallaCreditos.h">
+      <Filter>src\Pantallas</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\objetos\nave.h">
+      <Filter>src\Objetos</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
