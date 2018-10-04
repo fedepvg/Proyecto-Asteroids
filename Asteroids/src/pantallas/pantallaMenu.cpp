@@ -11,21 +11,14 @@ namespace Juego {
 		static int opcionElegida = 0;
 
 		void inicializarMenu() {
-			/*if (!estaInicializado) {
-				musica = LoadMusicStream("res/musica.ogg");
-			}*/
 			estaInicializado = true;
 		}
 
-		void realizarIngresoPantJuego() {
+		void realizarIngresoMenu() {
 
 		}
 
 		void actualizarMenu() {
-			/*if (!desinicializar) {
-				PlayMusicStream(musica);
-				UpdateMusicStream(musica);
-			}*/
 
 			if (IsKeyPressed(KEY_ENTER) || opcionElegida == KEY_ENTER) {
 				if (!desinicializar) {
@@ -67,13 +60,13 @@ namespace Juego {
 
 		void dibujarMenu() {
 			double tamanioTitulo = (GetScreenHeight()*GetScreenWidth())*0.0190 / 100;
-			double tamanioSubtitulos = (GetScreenHeight()*GetScreenWidth())*0.0092 / 100;
-			double tamanioVersion = (GetScreenHeight()*GetScreenWidth())*0.0052 / 100.0;
+			double tamanioSubtitulos = (GetScreenHeight()*GetScreenWidth())*0.0052 / 100;
+			double tamanioVersion = (GetScreenHeight()*GetScreenWidth())*0.0042 / 100.0;
 			char titulo[] = "Asteroids";
 			char subt1[] = "Para empezar, presione Enter";
 			char subt2[] = "Para ver los creditos, presione C";
 			char subt3[] = "Para salir, presione Q";
-			char version[] = "Asteroids v0.1";
+			char version[] = "Asteroids v0.2";
 			DrawText(titulo, (GetScreenWidth() - MeasureText(titulo, tamanioTitulo)) / 2, (GetScreenHeight() - tamanioTitulo) / 2, tamanioTitulo, DARKGRAY);
 			DrawText(subt1, 0 + tamanioSubtitulos, GetScreenHeight() - tamanioSubtitulos * 3, tamanioSubtitulos, DARKGRAY);
 			DrawText(subt2, 0 + tamanioSubtitulos, GetScreenHeight() - tamanioSubtitulos * 2, tamanioSubtitulos, DARKGRAY);
@@ -82,10 +75,7 @@ namespace Juego {
 		}
 
 		void desinicializarMenu() {
-			/*if (desinicializar) {
-				StopMusicStream(musica);
-				UnloadMusicStream(musica);
-			}*/
+			
 		}
 	}
 }

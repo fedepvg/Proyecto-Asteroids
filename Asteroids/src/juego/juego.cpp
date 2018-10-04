@@ -8,24 +8,25 @@
 
 namespace Juego {
 	static void inicializarJuego();
-	//static void inicializarPantallas();
+	static void inicializarPantallas();
 	static void actualizar();
 	static void dibujar();
-	//static void desinicializarPantallas();
+	static void desinicializarPantallas();
 	static void desinicializarJuego();
 
 	using namespace PantallaJuego;
 	estados estado = menu;
-	int anchoPantalla = 900;
-	int altoPantalla = 600;
+	int anchoPantalla = 1024;
+	int altoPantalla = 720;
 	bool enJuego = true;
 
 	void inicializarJuego() {
 		InitWindow(anchoPantalla, altoPantalla, "Asteroids");
+		SetExitKey(0);
 		InitAudioDevice();
 	}
 
-	/*void inicializarPantallas() {
+	void inicializarPantallas() {
 		switch (estado) {
 		case menu:
 			Menu::inicializarMenu();
@@ -35,7 +36,7 @@ namespace Juego {
 			break;
 		default:break;
 		}
-	}*/
+	}
 
 	/*void realizarIngreso() {
 		switch (estado) {
@@ -96,7 +97,7 @@ namespace Juego {
 		EndDrawing();
 	}
 
-	/*void desinicializarPantallas() {
+	void desinicializarPantallas() {
 		switch (estado) {
 		case menu:
 			Menu::desinicializarMenu();
@@ -106,7 +107,7 @@ namespace Juego {
 			break;
 		default:break;
 		}
-	}*/
+	}
 
 	void desinicializarJuego() {
 		CloseAudioDevice();
@@ -117,11 +118,11 @@ namespace Juego {
 
 		inicializarJuego();
 
-		while (enJuego) {
-			//inicializarPantallas();
+		while (enJuego && !WindowShouldClose()) {
+			inicializarPantallas();
 			actualizar();
 			dibujar();
-			//desinicializarPantallas();
+			desinicializarPantallas();
 		}
 
 		desinicializarJuego();

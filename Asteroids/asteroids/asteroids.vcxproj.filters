@@ -17,6 +17,9 @@
     <Filter Include="src\Objetos">
       <UniqueIdentifier>{41d7bf0a-0a6f-4bb3-acf0-7493ec400562}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Colisiones">
+      <UniqueIdentifier>{255e9bc3-ede6-4a73-abc4-d1d853f184ee}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\main.cpp">
@@ -40,6 +43,15 @@
     <ClCompile Include="..\src\objetos\nave.cpp">
       <Filter>src\Objetos</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\objetos\asteroides.cpp">
+      <Filter>src\Objetos</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\objetos\disparo.cpp">
+      <Filter>src\Objetos</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\colisiones\colisiones.cpp">
+      <Filter>src\Colisiones</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\juego\juego.h">
@@ -59,6 +71,15 @@
     </ClInclude>
     <ClInclude Include="..\src\objetos\nave.h">
       <Filter>src\Objetos</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\objetos\asteroides.h">
+      <Filter>src\Objetos</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\objetos\disparo.h">
+      <Filter>src\Objetos</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\colisiones\colisiones.h">
+      <Filter>src\Colisiones</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

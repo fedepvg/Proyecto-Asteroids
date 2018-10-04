@@ -16,15 +16,15 @@ namespace Juego {
 		}
 		
 		void dibujarCreditos() {
-			double tamanioTitulo = (GetScreenHeight()*GetScreenWidth())*0.0190 / 100.0;
-			double tamanioSubtitulos = (GetScreenHeight()*GetScreenWidth())*0.0092 / 100.0;
-			double tamanioVersion = (GetScreenHeight()*GetScreenWidth())*0.0052 / 100.0;
+			double tamanioTitulo = (GetScreenHeight()*GetScreenWidth())*0.0150 / 100.0;
+			double tamanioSubtitulos = (GetScreenHeight()*GetScreenWidth())*0.0062 / 100.0;
+			double tamanioVersion = (GetScreenHeight()*GetScreenWidth())*0.0042 / 100.0;
 			char titulo[] = "Creditos";
 			char subt1[] = "Hecho con la libreria Raylib";
 			char subt2[] = "Programador: Federico van Gelderen";
-			char subt3[] = "Sonidos: BFXR";
-			char subt4[] = "Musica: Bosca Ceoil, Music Maker";
-			char version[] = "PONG v1.0";
+			char subt3[] = "Sonidos: ";
+			char subt4[] = "Musica:";
+			char version[] = "Asteroids v0.2";
 			char volver[] = "Pulse M para volver al menu";
 			DrawText(titulo, (GetScreenWidth() - MeasureText(titulo, tamanioTitulo)) / 2, 0, tamanioTitulo, DARKGRAY);
 			DrawText(subt1, (GetScreenWidth() - MeasureText(subt1, tamanioSubtitulos)) / 2, GetScreenHeight() * 20 / 100, tamanioSubtitulos, DARKGRAY);
