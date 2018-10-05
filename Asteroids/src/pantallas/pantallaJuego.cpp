@@ -80,7 +80,7 @@ namespace Juego {
 
 		void inicializarPantJuego() {
 			if (!estaInicializado) {
-				inicializarJug();
+				inicializarNave();
 				inicializarAsteroides();
 				inicializarDisparos();
 				fase = inicio;
@@ -90,7 +90,7 @@ namespace Juego {
 
 		void desinicializarPantJuego() {
 			if (desinicializar) {
-				
+				desinicializarNave();
 			}
 		}
 	}

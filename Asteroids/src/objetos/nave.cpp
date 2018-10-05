@@ -19,20 +19,25 @@ namespace Juego {
 		static const float velocidadBase = 50.0f;
 		static const float aceleracionBase = 7.0f;
 		static const int cantMaxDisparos = 10;
-		Vector2 puntoDisparo = { 0,0 };
-		static Vector2 puntoBase1 = {0, 0};
+		Vector2 puntoDisparo = {0,0};
+		static Vector2 puntoBase1 = {0 , 0};
 		static Vector2 puntoBase2 = { 0, 0 };
 		static int auxVelocidadX = 0;
 		static int auxVelocidadY = 0;
+		static Rectangle destRec;
+		static Rectangle sourceRec;
+		static Vector2 origen;
+		Vector2 v1;//vector de la pos al punto de disparo
+		Vector2 v2;//vector de la pos a la pos del mouse
 
 		Jug crearJugador(){	
 			nave.pos.x = (float)GetScreenWidth() / 2;
 			nave.pos.y = (float)GetScreenHeight() / 2 - altoNave / 2;
 			nave.velocidad = { 0, 0 };
 			nave.aceleracion = 0;
-			nave.rotacion = 0;
+			nave.rotacion = 0.0f;
 			//nave.collider = { player.position.x + sin(player.rotation*DEG2RAD)*(shipHeight / 2.5f), player.position.y - cos(player.rotation*DEG2RAD)*(shipHeight / 2.5f), 12 };
-			nave.color = WHITE;
+			nave.color = BLACK;
 
 			return nave;
 		}
@@ -55,14 +60,36 @@ namespace Juego {
 		}
 
 		void moverNave() {
+			v1.x = puntoDisparo.x - nave.pos.x;
+			v1.y= puntoDisparo.y - nave.pos.y;
 
-			//ROTACION---------------------------------------------
-			if (IsKeyDown(KEY_LEFT)) nave.rotacion -= ANGULO_ROTACION;
-			if (IsKeyDown(KEY_RIGHT)) nave.rotacion += ANGULO_ROTACION;
+			v2.x= GetMouseX() - nave.pos.x;
+			v2.y= GetMouseY() - nave.pos.y;
+			
+			float prodVec;
+			float moduloV1;
+			float moduloV2;
+			float prodMod;
+			prodVec = v1.x*v2.x + v1.y*v2.y;
+			moduloV1 = sqrt(pow(v1.x, 2) + pow(v1.y, 2));
+			moduloV2 = sqrt(pow(v2.x, 2) + pow(v2.y, 2));
+			prodMod = moduloV1 * moduloV2;
+			nave.rotacion = acos(prodVec/(prodMod));
+			nave.rotacion *= RAD2DEG;
 
+			/*nave.rotacion = (acos((prodVec)/
+								(sqrt(pow(v1.x,2)+ pow(v1.y, 2)))*(sqrt(pow(v2.x, 2) + pow(v2.y, 2)))));*/
+			std::cout << nave.rotacion << std::endl;
+
+			//ROTACION TECLADO---------------------------------------------
+			/*if (IsKeyDown(KEY_LEFT)) nave.rotacion -= ANGULO_ROTACION;
+			if (IsKeyDown(KEY_RIGHT)) nave.rotacion += ANGULO_ROTACION;*/
+
+			//ROTACION MOUSE--------------------------------------------------
+			
 		
-			//MOVIMIENTO--------------------------------------------
-			if (IsKeyDown(KEY_UP))
+			//MOVIMIENTO TECLADO-------------------------------------------
+			/*if (IsKeyDown(KEY_UP))
 			{
 				if (!IsKeyDown(KEY_LEFT) && !IsKeyDown(KEY_RIGHT)) {
 					nave.velocidad.x = sin(nave.rotacion*DEG2RAD)*velocidadBase;
@@ -89,10 +116,15 @@ namespace Juego {
 				if (nave.aceleracion > 0) nave.aceleracion -= aceleracionBase *GetFrameTime();
 				else if (nave.aceleracion < 0) nave.aceleracion = 0;
 			}
-
+			
 			nave.pos.x += (nave.velocidad.x*nave.aceleracion);
 			nave.pos.y -= (nave.velocidad.y*nave.aceleracion);
+			destRec.x = nave.pos.x;
+			destRec.y = nave.pos.y;*/
 		}
+
+		//MOVIMIENTO MOUSE---------------------------------------------------------
+
 
 		void moverPuntosNave() {
 			// La rotación se calcula como dos circunferencias: una para el punto superior con radio=altura y otra para las bases con radio=base/2
@@ -107,20 +139,29 @@ namespace Juego {
 		}
 
 		void actualizarNave() {
-			moverNave();
 			moverPuntosNave();
+			moverNave();
 			chequearColisionBordes();
 		}
 
 		void dibujarNave() {
 			DrawTriangle(puntoDisparo, puntoBase1, puntoBase2, nave.color);
+			DrawTexturePro(nave.textura, sourceRec, destRec, origen ,nave.rotacion, WHITE);
 		}
 
-		void inicializarJug() {
+		void inicializarNave() {
 			tamanioBaseNave = 0.035f*(float)(GetScreenWidth());
 			altoNave = (tamanioBaseNave / 2) / tanf(30 * DEG2RAD);
-
+			nave.textura = LoadTexture("res/nave.png");
 			crearJugador();
+			destRec = { nave.pos.x, nave.pos.y, (float) nave.textura.width* 2, (float)nave.textura.height * 2 };
+			sourceRec= { 0.0f,0.0f, (float)nave.textura.width, (float)nave.textura.height};
+			origen = { (float)nave.textura.width,(float)nave.textura.height};
+			SetMousePosition(nave.pos);
+		}
+
+		void desinicializarNave() {
+			UnloadTexture(nave.textura);
 		}
 	}
 }

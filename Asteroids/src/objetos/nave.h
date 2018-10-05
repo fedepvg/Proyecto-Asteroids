@@ -10,8 +10,8 @@ namespace Juego {
 			Vector2 velocidad;
 			float aceleracion;
 			float rotacion;
-			//Vector3 collider;
 			Color color;
+			Texture2D textura;
 		};
 
 		extern Jug nave;
@@ -19,7 +19,8 @@ namespace Juego {
 		Jug crearJugador();
 		void actualizarNave();
 		void dibujarNave();
-		void inicializarJug();
+		void inicializarNave();
+		void desinicializarNave();
 	}
 }
 

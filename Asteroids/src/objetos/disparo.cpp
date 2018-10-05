@@ -26,7 +26,7 @@ namespace Juego {
 				disparo[i].radio=2;
 				disparo[i].rotacion=0.0f;
 				disparo[i].activado=false;
-				disparo[i].color=WHITE;
+				disparo[i].color=BLACK;
 			}
 		}
 
