@@ -46,7 +46,7 @@ namespace Juego {
 				for (int i = 0; i < cantMaxDisparos; i++)
 				{
 					if (!disparo[i].activado) {
-						disparo[i].pos = puntoDisparo;
+						disparo[i].pos = nave.pos; //puntoDisparo;
 						disparo[i].activado = true;
 						disparo[i].velocidad.x =sin(nave.rotacion*DEG2RAD)*velocidadDisparo;
 						disparo[i].velocidad.y =cos(nave.rotacion*DEG2RAD)*velocidadDisparo;

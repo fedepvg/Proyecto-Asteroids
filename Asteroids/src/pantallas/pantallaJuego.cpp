@@ -66,9 +66,9 @@ namespace Juego {
 		}
 
 		void dibujarJuego() {
+			dibujarDisparos();
 			dibujarNave();
 			dibujarAsteroides();
-			dibujarDisparos();
 			
 			char instrucciones[] = "El Jugador se mueve con las flechas";
 			char menu[] = "Pulse M para volver al menu";
