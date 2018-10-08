@@ -11,6 +11,7 @@ namespace Juego {
 			float radio;
 			bool activar;
 			Color color;
+			Texture2D textura;
 		};
 
 		extern const int maxAstGrandes;
@@ -20,6 +21,7 @@ namespace Juego {
 		extern Asteroides asteroideMediano[];
 		extern Asteroides asteroideChico[];
 		void inicializarAsteroides();
+		void desinicializarAsteroides();
 		void actualizarAsteroides();
 		void dibujarAsteroides();
 	}

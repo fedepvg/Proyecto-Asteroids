@@ -42,7 +42,7 @@ namespace Juego {
 		}
 
 		void disparar() {
-			if (IsKeyPressed(KEY_SPACE)) {
+			if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
 				for (int i = 0; i < cantMaxDisparos; i++)
 				{
 					if (!disparo[i].activado) {

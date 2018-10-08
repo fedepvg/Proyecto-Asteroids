@@ -90,7 +90,7 @@ namespace Juego {
 			std::cout << nave.rotacion << std::endl;			
 		
 			//MOVIMIENTO TECLADO-------------------------------------------
-			if (IsKeyDown(KEY_UP))
+			if (IsMouseButtonDown(MOUSE_RIGHT_BUTTON))
 			{
 				if (!IsKeyDown(KEY_LEFT) && !IsKeyDown(KEY_RIGHT)) {
 					nave.velocidad.x = sin(nave.rotacion*DEG2RAD)*velocidadBase;

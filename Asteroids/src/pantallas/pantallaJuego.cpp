@@ -91,6 +91,7 @@ namespace Juego {
 		void desinicializarPantJuego() {
 			if (desinicializar) {
 				desinicializarNave();
+				desinicializarAsteroides();
 			}
 		}
 	}
