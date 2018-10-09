@@ -8,7 +8,7 @@
 
 namespace Juego {
 	namespace Nave {
-#define ANGULO_ROTACION  300 * GetFrameTime();
+#define ANGULO_ROTACION  300 * GetFrameTime()
 
 		void calcuarAngRotacion();
 		void moverNave();
@@ -16,14 +16,12 @@ namespace Juego {
 		Jug nave;
 		static float altoNave;
 		static float tamanioBaseNave;
-		static const float velocidadBase = 30.0f;
-		static const float aceleracionBase = 2.5f;
+		static const float aceleracionBase = 0.1f;
+		static const float velocidadMax = 200.0f;
 		static const int cantMaxDisparos = 10;
 		Vector2 puntoDisparo = {0,0};
 		static Vector2 puntoBase1 = {0 , 0};
 		static Vector2 puntoBase2 = { 0, 0 };
-		static int auxVelocidadX = 0;
-		static int auxVelocidadY = 0;
 		static Rectangle destRec;
 		static Rectangle sourceRec;
 		static Vector2 origen;
@@ -38,8 +36,10 @@ namespace Juego {
 		Jug crearJugador(){	
 			nave.pos.x = (float)GetScreenWidth() / 2;
 			nave.pos.y = (float)GetScreenHeight() / 2 - altoNave / 2;
-			nave.velocidad = { 0, 0 };
-			nave.aceleracion = 0;
+			nave.velocidad.x = 0.0f;
+			nave.velocidad.y= 0.0f;
+			nave.aceleracion.x = 0;
+			nave.aceleracion.y = 0;
 			nave.rotacion = 0.0f;
 			nave.color = BLACK;
 
@@ -85,55 +85,35 @@ namespace Juego {
 
 		void moverNave() {
 			//ROTACION MOUSE--------------------------------------------------
-			calcuarAngRotacion();	
-			
-			std::cout << nave.rotacion << std::endl;			
+			calcuarAngRotacion();				
 		
 			//MOVIMIENTO TECLADO-------------------------------------------
-			if (IsMouseButtonDown(MOUSE_RIGHT_BUTTON))
-			{
-				if (!IsKeyDown(KEY_LEFT) && !IsKeyDown(KEY_RIGHT)) {
-					nave.velocidad.x = sin(nave.rotacion*DEG2RAD)*velocidadBase;
-					nave.velocidad.y = cos(nave.rotacion*DEG2RAD)*velocidadBase;
-
-					auxVelocidadX = nave.velocidad.x;
-					auxVelocidadY = nave.velocidad.y;
-
-					nave.velocidad.x *= GetFrameTime();
-					nave.velocidad.y *= GetFrameTime();
-
-					if (nave.aceleracion < 10.0f) nave.aceleracion += aceleracionBase *GetFrameTime();
-				}
-				else {
-					nave.velocidad.x = auxVelocidadX*GetFrameTime();
-					nave.velocidad.y = auxVelocidadY*GetFrameTime();
-					
-					if (nave.aceleracion > 0) nave.aceleracion -= aceleracionBase *GetFrameTime();
-					else if (nave.aceleracion < 0) nave.aceleracion = 0;
-				}
+			if (IsMouseButtonDown(MOUSE_RIGHT_BUTTON)){
+				nave.aceleracion.x += sin(nave.rotacion*DEG2RAD)*aceleracionBase;
+				nave.aceleracion.y += cos(nave.rotacion*DEG2RAD)*aceleracionBase;
+				nave.aceleracion.x *= GetFrameTime();
+				nave.aceleracion.y *= GetFrameTime();
 			}
-			else
-			{
-				if (nave.aceleracion > 0) nave.aceleracion -= aceleracionBase *GetFrameTime();
-				else if (nave.aceleracion < 0) nave.aceleracion = 0;
+			else {
+				nave.aceleracion = { 0.0f,0.0f };
 			}
-			float a = (GetScreenWidth()*GetScreenHeight())*0.01/100;
-			if (moduloV2 < a) {
-				if (moduloV2 <= 1) {
-					nave.aceleracion = 0;
-				}
-				else {
-					if (nave.aceleracion > 0) {
-						nave.aceleracion -= aceleracionBase * GetFrameTime();
-					}
-					else {
-						nave.aceleracion = 0;
-					}
-				}
-			}
+
+			nave.velocidad.x += nave.aceleracion.x;
+			nave.velocidad.y += nave.aceleracion.y;
 			
-			nave.pos.x += (nave.velocidad.x * nave.aceleracion);
-			nave.pos.y -= (nave.velocidad.y * nave.aceleracion);
+			if (nave.velocidad.x >= velocidadMax*GetFrameTime()) {
+				nave.velocidad.x = velocidadMax*GetFrameTime();
+			}else if (nave.velocidad.x <= -velocidadMax * GetFrameTime()) {
+				nave.velocidad.x = -velocidadMax * GetFrameTime();
+			}
+			if(nave.velocidad.y>=velocidadMax*GetFrameTime()){
+				nave.velocidad.y = velocidadMax * GetFrameTime();
+			}else if (nave.velocidad.y <= -velocidadMax * GetFrameTime()) {
+				nave.velocidad.y = -velocidadMax * GetFrameTime();
+			}
+
+			nave.pos.x += nave.velocidad.x;
+			nave.pos.y -= nave.velocidad.y;
 			destRec.x = nave.pos.x;
 			destRec.y = nave.pos.y;
 		}

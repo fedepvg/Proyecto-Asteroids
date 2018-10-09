@@ -8,7 +8,7 @@ namespace Juego {
 		struct Jug {
 			Vector2 pos;
 			Vector2 velocidad;
-			float aceleracion;
+			Vector2 aceleracion;
 			float rotacion;
 			Color color;
 			Texture2D textura;
