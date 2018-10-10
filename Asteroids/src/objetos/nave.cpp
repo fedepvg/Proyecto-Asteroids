@@ -119,7 +119,6 @@ namespace Juego {
 		}
 
 		void dibujarNave() {
-			//DrawCircle(destRec.x,destRec.y,destRec.height/2,RED);
 			DrawTexturePro(nave.textura, nave.spriteFuente, nave.escalaYPos, nave.origen ,nave.rotacion, WHITE);
 		}
 

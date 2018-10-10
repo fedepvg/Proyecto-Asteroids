@@ -10,7 +10,7 @@ namespace Juego {
 			Vector2 velocidad;
 			float radio;
 			float rotacion;
-			bool activado;
+			bool activo;
 			Color color;
 		};
 

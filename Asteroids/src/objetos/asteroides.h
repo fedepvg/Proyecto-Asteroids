@@ -9,17 +9,19 @@ namespace Juego {
 			Vector2 pos;
 			Vector2 velocidad;
 			float radio;
-			bool activar;
+			bool activo;
 			Color color;
 			Texture2D textura;
+			Rectangle escalaYPos;
+			Rectangle spriteFuente;
+			Vector2 origen;
 		};
 
-		extern const int maxAstGrandes;
-		extern const int maxAstMedianos;
-		extern const int maxAstChicos;
-		extern Asteroides asteroideGrande[];
-		extern Asteroides asteroideMediano[];
-		extern Asteroides asteroideChico[];
+		extern const int maxAsteroides;
+		extern int asteroidesMedActivos;
+		extern int asteroidesChicosActivos;
+		extern int asteroidesDestruidos;
+		extern Asteroides asteroide[];
 		void inicializarAsteroides();
 		void desinicializarAsteroides();
 		void actualizarAsteroides();

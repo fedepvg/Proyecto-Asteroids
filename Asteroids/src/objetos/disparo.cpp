@@ -25,7 +25,7 @@ namespace Juego {
 				disparo[i].velocidad = {0,0};
 				disparo[i].radio=2;
 				disparo[i].rotacion=0.0f;
-				disparo[i].activado=false;
+				disparo[i].activo=false;
 				disparo[i].color=BLACK;
 			}
 		}
@@ -45,9 +45,9 @@ namespace Juego {
 			if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
 				for (int i = 0; i < cantMaxDisparos; i++)
 				{
-					if (!disparo[i].activado) {
+					if (!disparo[i].activo) {
 						disparo[i].pos = nave.pos;
-						disparo[i].activado = true;
+						disparo[i].activo = true;
 						disparo[i].velocidad.x =sin(nave.rotacion*DEG2RAD)*velocidadDisparo;
 						disparo[i].velocidad.y =cos(nave.rotacion*DEG2RAD)*velocidadDisparo;
 						disparo[i].rotacion = nave.rotacion;
@@ -60,21 +60,21 @@ namespace Juego {
 		void chequearColisionBordes() {
 			for (int i = 0; i < cantMaxDisparos; i++)
 			{
-				if (disparo[i].activado) {
+				if (disparo[i].activo) {
 					if (disparo[i].pos.x < 0)
 					{
-						disparo[i].activado = false;
+						disparo[i].activo = false;
 					}
 					else if (disparo[i].pos.x > GetScreenWidth()) {
-						disparo[i].activado = false;
+						disparo[i].activo = false;
 					}
 
 					if (disparo[i].pos.y < 0)
 					{
-						disparo[i].activado = false;
+						disparo[i].activo = false;
 					}
 					else if (disparo[i].pos.y > GetScreenHeight()) {
-						disparo[i].activado = false;
+						disparo[i].activo = false;
 					}
 				}
 			}
@@ -83,7 +83,7 @@ namespace Juego {
 		void moverDisparos() {
 			for (int i = 0; i < cantMaxDisparos; i++)
 			{
-				if (disparo[i].activado) {
+				if (disparo[i].activo) {
 					disparo[i].pos.x += disparo[i].velocidad.x*GetFrameTime();
 					disparo[i].pos.y -= disparo[i].velocidad.y*GetFrameTime();
 				}
@@ -93,7 +93,7 @@ namespace Juego {
 		void dibujarDisparos() {
 			for (int i = 0; i < cantMaxDisparos; i++)
 			{
-				if (disparo[i].activado) {
+				if (disparo[i].activo) {
 					DrawCircle(disparo[i].pos.x, disparo[i].pos.y,disparo[i].radio,disparo[i].color);
 				}
 			}

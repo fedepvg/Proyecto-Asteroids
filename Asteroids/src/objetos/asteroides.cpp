@@ -7,166 +7,77 @@ namespace Juego {
 		static void chequearColisionBordes();
 		static void moverAsteroides();
 		static void crearAsteroides();
-		const int maxAstGrandes = 4;
-		const int maxAstMedianos = maxAstGrandes*2;
-		const int maxAstChicos = maxAstMedianos*2;
+		const int maxAsteroides = 4;
 		static const int velocidadAst = 200;
 		static int radioAstGrandes = 40;
 		static int radioAstMedianos = radioAstGrandes / 2;
 		static int radioAstChicos = radioAstMedianos / 2;
+		Texture2D tex;
 
-		Asteroides asteroideGrande[maxAstGrandes];
-		Asteroides asteroideMediano[maxAstMedianos];
-		Asteroides asteroideChico[maxAstChicos];
+		Asteroides asteroide[maxAsteroides];
 
 		void chequearColisionBordes() {
-			for (int i = 0; i < maxAstGrandes; i++)
+			for (int i = 0; i < maxAsteroides; i++)
 			{
-				if (asteroideGrande[i].activar)
+				if (asteroide[i].activo)
 				{
-					if (asteroideGrande[i].pos.x <0 - asteroideGrande[i].radio)
+					if (asteroide[i].pos.x <0 - asteroide[i].radio)
 					{
-						asteroideGrande[i].pos.x = GetScreenWidth() + asteroideGrande[i].radio;
+						asteroide[i].pos.x = GetScreenWidth() + asteroide[i].radio;
 					}
-					else if (asteroideGrande[i].pos.x >  GetScreenWidth() + asteroideGrande[i].radio) {
-						asteroideGrande[i].pos.x = -asteroideGrande[i].radio;
+					else if (asteroide[i].pos.x >  GetScreenWidth() + asteroide[i].radio) {
+						asteroide[i].pos.x = -asteroide[i].radio;
 					}
 
-					if (asteroideGrande[i].pos.y < 0 - asteroideGrande[i].radio)
+					if (asteroide[i].pos.y < 0 - asteroide[i].radio)
 					{
-						asteroideGrande[i].pos.y = GetScreenHeight() + asteroideGrande[i].radio;
+						asteroide[i].pos.y = GetScreenHeight() + asteroide[i].radio;
 					} 
-					else if (asteroideGrande[i].pos.y > GetScreenHeight() + asteroideGrande[i].radio) {
-						asteroideGrande[i].pos.y = -asteroideGrande[i].radio;
-					}
-				}
-			}
-			for (int i = 0; i < maxAstMedianos; i++)
-			{
-				if (asteroideMediano[i].activar)
-				{
-					if (asteroideMediano[i].pos.x <= 0 - asteroideMediano[i].radio)
-					{
-						asteroideMediano[i].pos.x = GetScreenWidth() + asteroideGrande[i].radio;
-					}
-					else if (asteroideMediano[i].pos.x >= GetScreenWidth() + asteroideMediano[i].radio) {
-						asteroideMediano[i].pos.x = - asteroideMediano[i].radio;
-					}
-
-					if (asteroideMediano[i].pos.y <= 0 - asteroideMediano[i].radio)
-					{
-						asteroideMediano[i].pos.y = GetScreenHeight() + asteroideGrande[i].radio;
-					}
-					else if (asteroideMediano[i].pos.y >= GetScreenHeight()) {
-						asteroideMediano[i].pos.y =  - asteroideMediano[i].radio;
-					}
-				}
-			}
-			for (int i = 0; i < maxAstChicos; i++)
-			{
-				if (asteroideChico[i].activar)
-				{
-					if (asteroideChico[i].pos.x <= 0 - asteroideChico[i].radio)
-					{
-						asteroideChico[i].pos.x = GetScreenWidth() + asteroideChico[i].radio;
-					} 
-					else if (asteroideChico[i].pos.x >= GetScreenWidth() + asteroideChico[i].radio){
-						asteroideChico[i].pos.x = -asteroideChico[i].radio;
-					}
-
-					if (asteroideChico[i].pos.y <=0 - asteroideChico[i].radio)
-					{
-						asteroideChico[i].pos.y = GetScreenHeight() + asteroideChico[i].radio;
-					} 
-					else if (asteroideChico[i].pos.y >= GetScreenHeight() + asteroideChico[i].radio) {
-						asteroideChico[i].pos.y = -asteroideChico[i].radio;
+					else if (asteroide[i].pos.y > GetScreenHeight() + asteroide[i].radio) {
+						asteroide[i].pos.y = -asteroide[i].radio;
 					}
 				}
 			}
 		}
 
 		void crearAsteroides() {
-			for (int i = 0; i < maxAstGrandes; i++)
+			for (int i = 0; i < maxAsteroides; i++)
 			{
 				do {
-					asteroideGrande[i].pos.x = GetRandomValue(0,GetScreenWidth());
-					asteroideGrande[i].pos.y = GetRandomValue(0, GetScreenHeight());
-				} while (asteroideGrande[i].pos.x<(GetScreenWidth()/4)*3 && asteroideGrande[i].pos.x > (GetScreenWidth() / 4) * 2 &&
-						asteroideGrande[i].pos.y<(GetScreenHeight() / 4) * 3 && asteroideGrande[i].pos.y >(GetScreenHeight() / 4) * 2);
+					asteroide[i].pos.x = GetRandomValue(0, GetScreenWidth());
+					asteroide[i].pos.y = GetRandomValue(0, GetScreenHeight());
+				} while (asteroide[i].pos.x<(GetScreenWidth() / 4) * 3 && asteroide[i].pos.x >(GetScreenWidth() / 4) ||
+					asteroide[i].pos.y<(GetScreenHeight() / 4) * 3 && asteroide[i].pos.y >(GetScreenHeight() / 4));
 				do {
-					asteroideGrande[i].velocidad.x =  GetRandomValue(-velocidadAst,velocidadAst);
-					asteroideGrande[i].velocidad.y = GetRandomValue(-velocidadAst, velocidadAst);
-				} while (asteroideGrande[i].velocidad.x == 0 || asteroideGrande[i].velocidad.y == 0);
-				
-				asteroideGrande[i].radio = radioAstGrandes;
-				asteroideGrande[i].activar = true;
-				asteroideGrande[i].color=MAROON;
-				//asteroideGrande[i].textura = LoadTexture("res/asteroideGrande.png");
-			}
+					asteroide[i].velocidad.x = GetRandomValue(-velocidadAst, velocidadAst);
+					asteroide[i].velocidad.y = GetRandomValue(-velocidadAst, velocidadAst);
+				} while (asteroide[i].velocidad.x == 0 || asteroide[i].velocidad.y == 0 &&
+					asteroide[i].velocidad.x<20 && asteroide[i].velocidad.x>-20 &&
+					asteroide[i].velocidad.y < 20 && asteroide[i].velocidad.y>-20);
 
-			for (int i = 0; i < maxAstMedianos; i++)
-			{
-				asteroideMediano[i].pos = { 0,0 };
-				asteroideMediano[i].velocidad = { 0,0 };
-				asteroideMediano[i].radio = radioAstMedianos;
-				asteroideMediano[i].activar = false;
-				asteroideMediano[i].color = RAYWHITE;
-				//asteroideMediano[i].textura = LoadTexture("res/asteroideMed.png");
-			}
-
-			for (int i = 0; i < maxAstChicos; i++)
-			{
-				asteroideChico[i].pos = { 0,0 };
-				asteroideChico[i].velocidad = { 0,0 };
-				asteroideChico[i].radio = radioAstChicos;
-				asteroideChico[i].activar = false;
-				asteroideChico[i].color = RAYWHITE;
-				//asteroideChico[i].textura = LoadTexture("res/asteroideChico.png");
+				asteroide[i].radio = radioAstGrandes;
+				asteroide[i].activo = true;
+				asteroide[i].color = MAROON;
+				asteroide[i].textura = tex;
+				asteroide[i].escalaYPos = { 0 , 0 , 0 , 0 };
+				asteroide[i].spriteFuente = { 0 , 0 , 0 , 0 };
+				asteroide[i].origen = { 0, 0 };
 			}
 		}
 
 		void desinicializarAsteroides() {
-			for (int i = 0; i < maxAstGrandes; i++)
-			{
-				UnloadTexture(asteroideGrande[i].textura);
-			}
-
-			for (int i = 0; i < maxAstMedianos; i++)
-			{
-				UnloadTexture(asteroideMediano[i].textura);
-			}
-
-			for (int i = 0; i < maxAstChicos; i++)
-			{
-				UnloadTexture(asteroideChico[i].textura);
-			}
+			UnloadTexture(tex);
 		}
 
 		void moverAsteroides() {
 			chequearColisionBordes();
 			
-			for (int i = 0; i < maxAstGrandes; i++)
+			for (int i = 0; i < maxAsteroides; i++)
 			{
-				if (asteroideGrande[i].activar)
+				if (asteroide[i].activo)
 				{
-					asteroideGrande[i].pos.x += asteroideGrande[i].velocidad.x*GetFrameTime();
-					asteroideGrande[i].pos.y += asteroideGrande[i].velocidad.y*GetFrameTime();
-				}
-			}
-			for (int i = 0; i < maxAstMedianos; i++)
-			{
-				if (asteroideMediano[i].activar)
-				{
-					asteroideMediano[i].pos.x += asteroideMediano[i].velocidad.x*GetFrameTime();
-					asteroideMediano[i].pos.y += asteroideMediano[i].velocidad.y*GetFrameTime();
-				}
-			}
-			for (int i = 0; i < maxAstChicos; i++)
-			{
-				if (asteroideChico[i].activar)
-				{
-					asteroideChico[i].pos.x += asteroideChico[i].velocidad.x*GetFrameTime();
-					asteroideChico[i].pos.y += asteroideChico[i].velocidad.y*GetFrameTime();
+					asteroide[i].pos.x += asteroide[i].velocidad.x*GetFrameTime();
+					asteroide[i].pos.y += asteroide[i].velocidad.y*GetFrameTime();
 				}
 			}
 		}
@@ -175,7 +86,11 @@ namespace Juego {
 			radioAstGrandes = 0.00008f*(float)(GetScreenWidth()*GetScreenHeight());
 			radioAstMedianos = radioAstGrandes / 2;
 			radioAstChicos = radioAstMedianos / 2;
+			tex = LoadTexture("res/asteroideGrande.png");
 			crearAsteroides();
+			int asteroidesMedActivos = 0;
+			int asteroidesChicosActivos = 0;
+			int asteroidesDestruidos = 0;
 		}
 
 		void actualizarAsteroides() {
@@ -184,25 +99,12 @@ namespace Juego {
 		}
 
 		void dibujarAsteroides(){
-			for (int i = 0; i < maxAstGrandes; i++)
+			for (int i = 0; i < maxAsteroides; i++)
 			{
-				if (asteroideGrande[i].activar)
+				if (asteroide[i].activo)
 				{
-					DrawCircle(asteroideGrande[i].pos.x, asteroideGrande[i].pos.y,asteroideGrande[i].radio,asteroideGrande[i].color);
-				}
-			}
-			for (int i = 0; i < maxAstMedianos; i++)
-			{
-				if (asteroideMediano[i].activar)
-				{
-					DrawCircle(asteroideMediano[i].pos.x, asteroideMediano[i].pos.y, asteroideMediano[i].radio, asteroideMediano[i].color);
-				}
-			}
-			for (int i = 0; i < maxAstChicos; i++)
-			{
-				if (asteroideChico[i].activar)
-				{
-					DrawCircle(asteroideChico[i].pos.x, asteroideChico[i].pos.y, asteroideChico[i].radio, asteroideChico[i].color);
+					DrawCircle(asteroide[i].pos.x, asteroide[i].pos.y, asteroide[i].radio, asteroide[i].color);
+					DrawTextureRec(tex, { 0.0f, 0.0f, (float)tex.width, (float)tex.height }, {asteroide[i].pos.x - tex.width / 2,asteroide[i].pos.y - tex.height/2}, WHITE);
 				}
 			}
 		}
