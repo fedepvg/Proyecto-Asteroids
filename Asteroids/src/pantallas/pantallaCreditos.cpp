@@ -24,7 +24,7 @@ namespace Juego {
 			char subt2[] = "Programador: Federico van Gelderen";
 			char subt3[] = "Sonidos: ";
 			char subt4[] = "Musica:";
-			char version[] = "Asteroids v0.2";
+			char version[] = "Asteroids v0.3";
 			char volver[] = "Pulse M para volver al menu";
 			DrawText(titulo, (GetScreenWidth() - MeasureText(titulo, tamanioTitulo)) / 2, 0, tamanioTitulo, DARKGRAY);
 			DrawText(subt1, (GetScreenWidth() - MeasureText(subt1, tamanioSubtitulos)) / 2, GetScreenHeight() * 20 / 100, tamanioSubtitulos, DARKGRAY);

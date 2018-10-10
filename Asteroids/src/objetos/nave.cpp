@@ -15,9 +15,6 @@ namespace Juego {
 		static float tamanioBaseNave;
 		static const float aceleracionBase = 100.0f;
 		static const float velocidadMax = 200.0f;
-		static Rectangle destRec;
-		static Rectangle sourceRec;
-		static Vector2 origen;
 		static Vector2 vecReferncia;		//vector de la nave.pos al x=0 y=nave.pos
 		static Vector2 vecDireccion;		//vector de la nave.pos a la pos del mouse
 		static float prodVec;
@@ -34,6 +31,12 @@ namespace Juego {
 			nave.aceleracion.y = 0;
 			nave.rotacion = 0.0f;
 			nave.color = BLACK;
+			nave.textura = LoadTexture("res/nave.png");
+			nave.escalaYPos = { nave.pos.x, nave.pos.y, (float)nave.textura.width * 2, (float)nave.textura.height * 2 };
+			nave.spriteFuente = { 0.0f,0.0f, (float)nave.textura.width, (float)nave.textura.height };
+			nave.origen = { (float)nave.textura.width,(float)nave.textura.height };
+			nave.perdio = false;
+			nave.gano = false;
 
 			return nave;
 		}
@@ -106,8 +109,8 @@ namespace Juego {
 
 			nave.pos.x += nave.velocidad.x;
 			nave.pos.y -= nave.velocidad.y;
-			destRec.x = nave.pos.x;
-			destRec.y = nave.pos.y;
+			nave.escalaYPos.x = nave.pos.x;
+			nave.escalaYPos.y = nave.pos.y;
 		}
 
 		void actualizarNave() {
@@ -117,15 +120,11 @@ namespace Juego {
 
 		void dibujarNave() {
 			//DrawCircle(destRec.x,destRec.y,destRec.height/2,RED);
-			DrawTexturePro(nave.textura, sourceRec, destRec, origen ,nave.rotacion, WHITE);
+			DrawTexturePro(nave.textura, nave.spriteFuente, nave.escalaYPos, nave.origen ,nave.rotacion, WHITE);
 		}
 
 		void inicializarNave() {
-			nave.textura = LoadTexture("res/nave.png");
 			crearJugador();
-			destRec = { nave.pos.x, nave.pos.y, (float)nave.textura.width * 2, (float)nave.textura.height * 2 };
-			sourceRec = { 0.0f,0.0f, (float)nave.textura.width, (float)nave.textura.height };
-			origen = { (float)nave.textura.width,(float)nave.textura.height };
 		}
 
 		void desinicializarNave() {

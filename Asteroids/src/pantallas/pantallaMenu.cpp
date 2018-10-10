@@ -66,7 +66,7 @@ namespace Juego {
 			char subt1[] = "Para empezar, presione Enter";
 			char subt2[] = "Para ver los creditos, presione C";
 			char subt3[] = "Para salir, presione Q";
-			char version[] = "Asteroids v0.2";
+			char version[] = "Asteroids v0.3";
 			DrawText(titulo, (GetScreenWidth() - MeasureText(titulo, tamanioTitulo)) / 2, (GetScreenHeight() - tamanioTitulo) / 2, tamanioTitulo, DARKGRAY);
 			DrawText(subt1, 0 + tamanioSubtitulos, GetScreenHeight() - tamanioSubtitulos * 3, tamanioSubtitulos, DARKGRAY);
 			DrawText(subt2, 0 + tamanioSubtitulos, GetScreenHeight() - tamanioSubtitulos * 2, tamanioSubtitulos, DARKGRAY);

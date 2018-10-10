@@ -1,6 +1,7 @@
 #include "pantallaGameOver.h"
 
 #include "raylib.h"
+#include "Juego/juego.h"
 
 namespace Juego {
 	namespace GameOver {
@@ -9,12 +10,12 @@ namespace Juego {
 		}
 
 		void actualizarGO() {
-			/*if (IsKeyPressed(KEY_M)) {
+			if (IsKeyPressed(KEY_M)) {
 				estado = menu;
 			}
 			if (IsKeyPressed(KEY_ENTER)) {
 				estado = partida;
-			}*/
+			}
 		}
 
 		void dibujarGO() {

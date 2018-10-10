@@ -6,7 +6,7 @@
 namespace Juego {
 	namespace Asteroides {
 		struct Asteroides {
-			Vector2 posicion;
+			Vector2 pos;
 			Vector2 velocidad;
 			float radio;
 			bool activar;

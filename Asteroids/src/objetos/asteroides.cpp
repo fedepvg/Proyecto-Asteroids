@@ -24,20 +24,20 @@ namespace Juego {
 			{
 				if (asteroideGrande[i].activar)
 				{
-					if (asteroideGrande[i].posicion.x <0 - asteroideGrande[i].radio)
+					if (asteroideGrande[i].pos.x <0 - asteroideGrande[i].radio)
 					{
-						asteroideGrande[i].posicion.x = GetScreenWidth() + asteroideGrande[i].radio;
+						asteroideGrande[i].pos.x = GetScreenWidth() + asteroideGrande[i].radio;
 					}
-					else if (asteroideGrande[i].posicion.x >  GetScreenWidth() + asteroideGrande[i].radio) {
-						asteroideGrande[i].posicion.x = -asteroideGrande[i].radio;
+					else if (asteroideGrande[i].pos.x >  GetScreenWidth() + asteroideGrande[i].radio) {
+						asteroideGrande[i].pos.x = -asteroideGrande[i].radio;
 					}
 
-					if (asteroideGrande[i].posicion.y < 0 - asteroideGrande[i].radio)
+					if (asteroideGrande[i].pos.y < 0 - asteroideGrande[i].radio)
 					{
-						asteroideGrande[i].posicion.y = GetScreenHeight() + asteroideGrande[i].radio;
+						asteroideGrande[i].pos.y = GetScreenHeight() + asteroideGrande[i].radio;
 					} 
-					else if (asteroideGrande[i].posicion.y > GetScreenHeight() + asteroideGrande[i].radio) {
-						asteroideGrande[i].posicion.y = -asteroideGrande[i].radio;
+					else if (asteroideGrande[i].pos.y > GetScreenHeight() + asteroideGrande[i].radio) {
+						asteroideGrande[i].pos.y = -asteroideGrande[i].radio;
 					}
 				}
 			}
@@ -45,20 +45,20 @@ namespace Juego {
 			{
 				if (asteroideMediano[i].activar)
 				{
-					if (asteroideMediano[i].posicion.x <= 0 - asteroideMediano[i].radio)
+					if (asteroideMediano[i].pos.x <= 0 - asteroideMediano[i].radio)
 					{
-						asteroideMediano[i].posicion.x = GetScreenWidth() + asteroideGrande[i].radio;
+						asteroideMediano[i].pos.x = GetScreenWidth() + asteroideGrande[i].radio;
 					}
-					else if (asteroideMediano[i].posicion.x >= GetScreenWidth() + asteroideMediano[i].radio) {
-						asteroideMediano[i].posicion.x = - asteroideMediano[i].radio;
+					else if (asteroideMediano[i].pos.x >= GetScreenWidth() + asteroideMediano[i].radio) {
+						asteroideMediano[i].pos.x = - asteroideMediano[i].radio;
 					}
 
-					if (asteroideMediano[i].posicion.y <= 0 - asteroideMediano[i].radio)
+					if (asteroideMediano[i].pos.y <= 0 - asteroideMediano[i].radio)
 					{
-						asteroideMediano[i].posicion.y = GetScreenHeight() + asteroideGrande[i].radio;
+						asteroideMediano[i].pos.y = GetScreenHeight() + asteroideGrande[i].radio;
 					}
-					else if (asteroideMediano[i].posicion.y >= GetScreenHeight()) {
-						asteroideMediano[i].posicion.y =  - asteroideMediano[i].radio;
+					else if (asteroideMediano[i].pos.y >= GetScreenHeight()) {
+						asteroideMediano[i].pos.y =  - asteroideMediano[i].radio;
 					}
 				}
 			}
@@ -66,20 +66,20 @@ namespace Juego {
 			{
 				if (asteroideChico[i].activar)
 				{
-					if (asteroideChico[i].posicion.x <= 0 - asteroideChico[i].radio)
+					if (asteroideChico[i].pos.x <= 0 - asteroideChico[i].radio)
 					{
-						asteroideChico[i].posicion.x = GetScreenWidth() + asteroideChico[i].radio;
+						asteroideChico[i].pos.x = GetScreenWidth() + asteroideChico[i].radio;
 					} 
-					else if (asteroideChico[i].posicion.x >= GetScreenWidth() + asteroideChico[i].radio){
-						asteroideChico[i].posicion.x = -asteroideChico[i].radio;
+					else if (asteroideChico[i].pos.x >= GetScreenWidth() + asteroideChico[i].radio){
+						asteroideChico[i].pos.x = -asteroideChico[i].radio;
 					}
 
-					if (asteroideChico[i].posicion.y <=0 - asteroideChico[i].radio)
+					if (asteroideChico[i].pos.y <=0 - asteroideChico[i].radio)
 					{
-						asteroideChico[i].posicion.y = GetScreenHeight() + asteroideChico[i].radio;
+						asteroideChico[i].pos.y = GetScreenHeight() + asteroideChico[i].radio;
 					} 
-					else if (asteroideChico[i].posicion.y >= GetScreenHeight() + asteroideChico[i].radio) {
-						asteroideChico[i].posicion.y = -asteroideChico[i].radio;
+					else if (asteroideChico[i].pos.y >= GetScreenHeight() + asteroideChico[i].radio) {
+						asteroideChico[i].pos.y = -asteroideChico[i].radio;
 					}
 				}
 			}
@@ -89,10 +89,10 @@ namespace Juego {
 			for (int i = 0; i < maxAstGrandes; i++)
 			{
 				do {
-					asteroideGrande[i].posicion.x = GetRandomValue(0,GetScreenWidth());
-					asteroideGrande[i].posicion.y = GetRandomValue(0, GetScreenHeight());
-				} while (asteroideGrande[i].posicion.x<(GetScreenWidth()/4)*3 && asteroideGrande[i].posicion.x > (GetScreenWidth() / 4) * 2 &&
-						asteroideGrande[i].posicion.y<(GetScreenHeight() / 4) * 3 && asteroideGrande[i].posicion.y >(GetScreenHeight() / 4) * 2);
+					asteroideGrande[i].pos.x = GetRandomValue(0,GetScreenWidth());
+					asteroideGrande[i].pos.y = GetRandomValue(0, GetScreenHeight());
+				} while (asteroideGrande[i].pos.x<(GetScreenWidth()/4)*3 && asteroideGrande[i].pos.x > (GetScreenWidth() / 4) * 2 &&
+						asteroideGrande[i].pos.y<(GetScreenHeight() / 4) * 3 && asteroideGrande[i].pos.y >(GetScreenHeight() / 4) * 2);
 				do {
 					asteroideGrande[i].velocidad.x =  GetRandomValue(-velocidadAst,velocidadAst);
 					asteroideGrande[i].velocidad.y = GetRandomValue(-velocidadAst, velocidadAst);
@@ -106,7 +106,7 @@ namespace Juego {
 
 			for (int i = 0; i < maxAstMedianos; i++)
 			{
-				asteroideMediano[i].posicion = { 0,0 };
+				asteroideMediano[i].pos = { 0,0 };
 				asteroideMediano[i].velocidad = { 0,0 };
 				asteroideMediano[i].radio = radioAstMedianos;
 				asteroideMediano[i].activar = false;
@@ -116,7 +116,7 @@ namespace Juego {
 
 			for (int i = 0; i < maxAstChicos; i++)
 			{
-				asteroideChico[i].posicion = { 0,0 };
+				asteroideChico[i].pos = { 0,0 };
 				asteroideChico[i].velocidad = { 0,0 };
 				asteroideChico[i].radio = radioAstChicos;
 				asteroideChico[i].activar = false;
@@ -149,24 +149,24 @@ namespace Juego {
 			{
 				if (asteroideGrande[i].activar)
 				{
-					asteroideGrande[i].posicion.x += asteroideGrande[i].velocidad.x*GetFrameTime();
-					asteroideGrande[i].posicion.y += asteroideGrande[i].velocidad.y*GetFrameTime();
+					asteroideGrande[i].pos.x += asteroideGrande[i].velocidad.x*GetFrameTime();
+					asteroideGrande[i].pos.y += asteroideGrande[i].velocidad.y*GetFrameTime();
 				}
 			}
 			for (int i = 0; i < maxAstMedianos; i++)
 			{
 				if (asteroideMediano[i].activar)
 				{
-					asteroideMediano[i].posicion.x += asteroideMediano[i].velocidad.x*GetFrameTime();
-					asteroideMediano[i].posicion.y += asteroideMediano[i].velocidad.y*GetFrameTime();
+					asteroideMediano[i].pos.x += asteroideMediano[i].velocidad.x*GetFrameTime();
+					asteroideMediano[i].pos.y += asteroideMediano[i].velocidad.y*GetFrameTime();
 				}
 			}
 			for (int i = 0; i < maxAstChicos; i++)
 			{
 				if (asteroideChico[i].activar)
 				{
-					asteroideChico[i].posicion.x += asteroideChico[i].velocidad.x*GetFrameTime();
-					asteroideChico[i].posicion.y += asteroideChico[i].velocidad.y*GetFrameTime();
+					asteroideChico[i].pos.x += asteroideChico[i].velocidad.x*GetFrameTime();
+					asteroideChico[i].pos.y += asteroideChico[i].velocidad.y*GetFrameTime();
 				}
 			}
 		}
@@ -188,21 +188,21 @@ namespace Juego {
 			{
 				if (asteroideGrande[i].activar)
 				{
-					DrawCircle(asteroideGrande[i].posicion.x, asteroideGrande[i].posicion.y,asteroideGrande[i].radio,asteroideGrande[i].color);
+					DrawCircle(asteroideGrande[i].pos.x, asteroideGrande[i].pos.y,asteroideGrande[i].radio,asteroideGrande[i].color);
 				}
 			}
 			for (int i = 0; i < maxAstMedianos; i++)
 			{
 				if (asteroideMediano[i].activar)
 				{
-					DrawCircle(asteroideMediano[i].posicion.x, asteroideMediano[i].posicion.y, asteroideMediano[i].radio, asteroideMediano[i].color);
+					DrawCircle(asteroideMediano[i].pos.x, asteroideMediano[i].pos.y, asteroideMediano[i].radio, asteroideMediano[i].color);
 				}
 			}
 			for (int i = 0; i < maxAstChicos; i++)
 			{
 				if (asteroideChico[i].activar)
 				{
-					DrawCircle(asteroideChico[i].posicion.x, asteroideChico[i].posicion.y, asteroideChico[i].radio, asteroideChico[i].color);
+					DrawCircle(asteroideChico[i].pos.x, asteroideChico[i].pos.y, asteroideChico[i].radio, asteroideChico[i].color);
 				}
 			}
 		}

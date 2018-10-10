@@ -12,6 +12,11 @@ namespace Juego {
 			float rotacion;
 			Color color;
 			Texture2D textura;
+			Rectangle escalaYPos;
+			Rectangle spriteFuente;
+			Vector2 origen;
+			bool perdio;
+			bool gano;
 		};
 
 		extern Jug nave;

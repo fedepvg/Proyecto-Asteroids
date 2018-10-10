@@ -5,15 +5,16 @@
 #include "objetos/nave.h"
 #include "objetos/asteroides.h"
 #include "objetos/disparo.h"
+#include "colisiones/colisiones.h"
 
 namespace Juego {
 	namespace PantallaJuego {
 		using namespace Asteroides;
 		using namespace Nave;
 		using namespace Disparo;
+		using namespace Colisiones;
 
-		static void chequearColisiones();
-		static bool chequearResultado();
+		static bool jugadorPerdio();
 
 		using namespace Juego;
 		static bool estaInicializado = false;
@@ -21,14 +22,13 @@ namespace Juego {
 		static bool desinicializar = false;
 		static int opcionElegida = 0;
 
-
-		void chequearColisiones() {
-			
-		}
-
-		bool chequearResultado() {
-
-			return false;
+		bool jugadorPerdio() {
+			if (nave.perdio){
+				return true;
+			}
+			else {
+				return false;
+			}	
 		}
 
 		void realizarIngresoPantJuego() {
@@ -39,8 +39,8 @@ namespace Juego {
 			actualizarNave();
 			actualizarDisparos();
 			actualizarAsteroides();
-			chequearColisiones();
-			if (chequearResultado()) {
+			actualizarColisiones();
+			if (jugadorPerdio()) {
 				if (!desinicializar) {
 					desinicializar = true;
 				}
