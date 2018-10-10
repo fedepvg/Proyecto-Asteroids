@@ -17,7 +17,6 @@ namespace Juego {
 			Vector2 origen;
 		};
 
-		extern const int maxAsteroides;
 		extern int asteroidesDestruidos;
 		extern Asteroides asteroide[];
 		void inicializarAsteroides();

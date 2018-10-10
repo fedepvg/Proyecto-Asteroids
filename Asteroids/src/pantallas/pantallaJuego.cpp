@@ -6,6 +6,7 @@
 #include "objetos/asteroides.h"
 #include "objetos/disparo.h"
 #include "colisiones/colisiones.h"
+#include "oleadas/oleadas.h"
 
 namespace Juego {
 	namespace PantallaJuego {
@@ -13,6 +14,7 @@ namespace Juego {
 		using namespace Nave;
 		using namespace Disparo;
 		using namespace Colisiones;
+		using namespace Oleadas;
 
 		static bool jugadorPerdio();
 
@@ -23,7 +25,7 @@ namespace Juego {
 		static int opcionElegida = 0;
 
 		bool jugadorPerdio() {
-			if (nave.perdio){
+			if (nave.perdio||nave.gano){
 				return true;
 			}
 			else {
@@ -31,20 +33,16 @@ namespace Juego {
 			}	
 		}
 
-		void realizarIngresoPantJuego() {
-
-		}
-
 		void actualizarJuego() {
 			actualizarNave();
 			actualizarDisparos();
 			actualizarAsteroides();
+			actualizarOleadas();
 			actualizarColisiones();
 			if (jugadorPerdio()) {
 				if (!desinicializar) {
 					desinicializar = true;
-				}
-				else {
+				}else {
 					fase = fin;
 					estado = gameOver;
 					estaInicializado = false;
@@ -55,8 +53,7 @@ namespace Juego {
 				if (!desinicializar) {
 					desinicializar = true;
 					opcionElegida = KEY_M;
-				}
-				else {
+				}else {
 					estado = menu;
 					estaInicializado = false;
 					desinicializar = false;
@@ -76,14 +73,16 @@ namespace Juego {
 			const double tamanioLetras = (GetScreenHeight()*GetScreenWidth())*0.0037 / 100;
 			DrawText(instrucciones, 0 + tamanioLetras, GetScreenHeight() - tamanioLetras, tamanioLetras, DARKGRAY);
 			DrawText(menu, GetScreenWidth() - MeasureText(menu, tamanioLetras), GetScreenHeight() - tamanioLetras, tamanioLetras, DARKGRAY);
+			DrawText(FormatText("%f", temporizador),0+tamanioLetras,0+tamanioLetras,tamanioLetras,DARKGRAY);
 		}
 
 		void inicializarPantJuego() {
 			if (!estaInicializado) {
 				inicializarNave();
 				inicializarAsteroides();
+				inicializarOleadas();
 				inicializarDisparos();
-				fase = inicio;
+				fase = juego;
 			}
 			estaInicializado = true;
 		}

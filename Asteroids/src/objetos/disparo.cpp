@@ -1,6 +1,7 @@
 #include "disparo.h"
 
 #include <cmath>
+#include <iostream>
 
 #include "raylib.h"
 #include "nave.h"
@@ -13,14 +14,13 @@ namespace Juego {
 		static void disparar();
 		static void chequearColisionBordes();
 		static void moverDisparos();
-		static const float velocidadDisparo = 750;
+		static const float velocidadDisparo = 750.0f;
 		int radioDisparo = 0;
 		const int cantMaxDisparos=4;
 		Balas disparo[cantMaxDisparos];
 
 		void crearDisparos() {
-			for (int i = 0; i < cantMaxDisparos; i++)
-			{
+			for (int i = 0; i < cantMaxDisparos; i++){
 				disparo[i].pos = {0, 0};
 				disparo[i].velocidad = {0,0};
 				disparo[i].radio=2;
@@ -42,15 +42,14 @@ namespace Juego {
 		}
 
 		void disparar() {
-			if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
-				for (int i = 0; i < cantMaxDisparos; i++)
-				{
+			if (IsMouseButtonReleased(MOUSE_LEFT_BUTTON)) {
+				for (int i = 0; i < cantMaxDisparos; i++)	{
 					if (!disparo[i].activo) {
 						disparo[i].pos = nave.pos;
 						disparo[i].activo = true;
-						disparo[i].velocidad.x =sin(nave.rotacion*DEG2RAD)*velocidadDisparo;
-						disparo[i].velocidad.y =cos(nave.rotacion*DEG2RAD)*velocidadDisparo;
 						disparo[i].rotacion = nave.rotacion;
+						disparo[i].velocidad.x =sin(disparo[i].rotacion*DEG2RAD)*velocidadDisparo;
+						disparo[i].velocidad.y =cos(disparo[i].rotacion*DEG2RAD)*velocidadDisparo;
 						break;
 					}
 				}
@@ -61,28 +60,25 @@ namespace Juego {
 			for (int i = 0; i < cantMaxDisparos; i++)
 			{
 				if (disparo[i].activo) {
-					if (disparo[i].pos.x < 0)
-					{
+					
+					if (disparo[i].pos.x < 0){
 						disparo[i].activo = false;
-					}
-					else if (disparo[i].pos.x > GetScreenWidth()) {
+					}else if (disparo[i].pos.x > GetScreenWidth()) {
 						disparo[i].activo = false;
 					}
 
-					if (disparo[i].pos.y < 0)
-					{
+					if (disparo[i].pos.y < 0){
+						disparo[i].activo = false;
+					}else if (disparo[i].pos.y > GetScreenHeight()) {
 						disparo[i].activo = false;
 					}
-					else if (disparo[i].pos.y > GetScreenHeight()) {
-						disparo[i].activo = false;
-					}
+
 				}
 			}
 		}
 
 		void moverDisparos() {
-			for (int i = 0; i < cantMaxDisparos; i++)
-			{
+			for (int i = 0; i < cantMaxDisparos; i++){
 				if (disparo[i].activo) {
 					disparo[i].pos.x += disparo[i].velocidad.x*GetFrameTime();
 					disparo[i].pos.y -= disparo[i].velocidad.y*GetFrameTime();
@@ -91,8 +87,7 @@ namespace Juego {
 		}
 
 		void dibujarDisparos() {
-			for (int i = 0; i < cantMaxDisparos; i++)
-			{
+			for (int i = 0; i < cantMaxDisparos; i++){
 				if (disparo[i].activo) {
 					DrawCircle(disparo[i].pos.x, disparo[i].pos.y,disparo[i].radio,disparo[i].color);
 				}

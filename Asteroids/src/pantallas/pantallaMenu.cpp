@@ -7,15 +7,10 @@ namespace Juego {
 	namespace Menu {
 		static bool estaInicializado = false;
 		static bool desinicializar = false;
-		Music musica;
 		static int opcionElegida = 0;
 
 		void inicializarMenu() {
 			estaInicializado = true;
-		}
-
-		void realizarIngresoMenu() {
-
 		}
 
 		void actualizarMenu() {

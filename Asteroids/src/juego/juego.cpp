@@ -2,8 +2,8 @@
 
 #include "raylib.h"
 #include "Pantallas/pantallaJuego.h"
-#include"Pantallas/pantallaMenu.h"
-#include"Pantallas/pantallaGameOver.h"
+#include "Pantallas/pantallaMenu.h"
+#include "Pantallas/pantallaGameOver.h"
 #include "Pantallas/pantallaCreditos.h"
 
 namespace Juego {
@@ -37,24 +37,6 @@ namespace Juego {
 		default:break;
 		}
 	}
-
-	/*void realizarIngreso() {
-		switch (estado) {
-		case menu:
-			Menu::realizarIngresoMenu();
-			break;
-		case partida:
-			realizarIngresoPantJuego();
-			break;
-		case gameOver:
-			GameOver::realizarIngresoGO();
-			break;
-		case creditos:
-			Creditos::realizarIngresoCreditos();
-			break;
-		default:break;
-		}
-	}*/
 
 	void actualizar() {
 		switch (estado) {

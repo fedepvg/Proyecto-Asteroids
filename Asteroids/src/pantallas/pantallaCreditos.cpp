@@ -5,9 +5,6 @@
 
 namespace Juego {
 	namespace Creditos {
-		void realizarIngresoCreditos() {
-
-		}
 
 		void actualizarCreditos() {
 			if (IsKeyPressed(KEY_M)) {

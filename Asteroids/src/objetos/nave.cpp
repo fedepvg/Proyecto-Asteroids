@@ -45,15 +45,13 @@ namespace Juego {
 			//Colision con bordes
 			if (nave.pos.x <= 0) {
 				nave.pos.x = GetScreenWidth();
-			}
-			else if (nave.pos.x >= GetScreenWidth()) {
+			}else if (nave.pos.x >= GetScreenWidth()) {
 				nave.pos.x = 0;
 			}
 
 			if (nave.pos.y <= 0) {
 				nave.pos.y = GetScreenHeight();
-			}
-			else if (nave.pos.y >= GetScreenHeight()) {
+			}else if (nave.pos.y >= GetScreenHeight()) {
 				nave.pos.y = 0+5;
 			}
 		}
@@ -119,6 +117,7 @@ namespace Juego {
 		}
 
 		void dibujarNave() {
+			//DrawCircle(nave.pos.x,nave.pos.y, nave.posYEscala.width / 2,RED);
 			DrawTexturePro(nave.textura, nave.spriteFuente, nave.posYEscala, nave.origen ,nave.rotacion, WHITE);
 		}
 
