@@ -70,7 +70,7 @@ namespace Juego {
 			dibujarNave();
 			dibujarAsteroides();
 			
-			char instrucciones[] = "El Jugador se mueve con las flechas";
+			char instrucciones[] = "El Jugador se mueve con el click derecho del mouse y dispara con el izquierdo";
 			char menu[] = "Pulse M para volver al menu";
 
 			const double tamanioLetras = (GetScreenHeight()*GetScreenWidth())*0.0037 / 100;

@@ -10,6 +10,8 @@ namespace Juego {
 		using namespace Nave;
 		using namespace Disparo;
 
+		void actualizarColisiones() {
 
+		}
 	}
 }

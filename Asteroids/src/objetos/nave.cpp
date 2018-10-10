@@ -1,14 +1,11 @@
 #include "nave.h"
 
 #include <cmath>
-#include <iostream>
 
 #include "raylib.h"
-#include "pantallas/pantallaJuego.h"
 
 namespace Juego {
 	namespace Nave {
-#define ANGULO_ROTACION  300 * GetFrameTime()
 
 		void calcuarAngRotacion();
 		void moverNave();
@@ -16,22 +13,17 @@ namespace Juego {
 		Jug nave;
 		static float altoNave;
 		static float tamanioBaseNave;
-		static const float aceleracionBase = 0.1f;
+		static const float aceleracionBase = 100.0f;
 		static const float velocidadMax = 200.0f;
-		static const int cantMaxDisparos = 10;
-		Vector2 puntoDisparo = {0,0};
-		static Vector2 puntoBase1 = {0 , 0};
-		static Vector2 puntoBase2 = { 0, 0 };
 		static Rectangle destRec;
 		static Rectangle sourceRec;
 		static Vector2 origen;
-		static Vector2 v1;		//vector de la nave.pos al x=0 y=nave.pos
-		static Vector2 v2;		//vector de la nave.pos a la pos del mouse
+		static Vector2 vecReferncia;		//vector de la nave.pos al x=0 y=nave.pos
+		static Vector2 vecDireccion;		//vector de la nave.pos a la pos del mouse
 		static float prodVec;
 		static float moduloV1;
 		static float moduloV2;
-		static float prodMod;
-			
+		static float prodMod;	
 
 		Jug crearJugador(){	
 			nave.pos.x = (float)GetScreenWidth() / 2;
@@ -64,15 +56,15 @@ namespace Juego {
 		}
 
 		void calcuarAngRotacion() {
-			v1.x = nave.pos.x - nave.pos.x;
-			v1.y = 0.0f - nave.pos.y;
+			vecReferncia.x = nave.pos.x - nave.pos.x;
+			vecReferncia.y = 0.0f - nave.pos.y;
 
-			v2.x = GetMouseX() - nave.pos.x;
-			v2.y = GetMouseY() - nave.pos.y;
+			vecDireccion.x = GetMouseX() - nave.pos.x;
+			vecDireccion.y = GetMouseY() - nave.pos.y;
 
-			prodVec = v1.x*v2.x + v1.y*v2.y;
-			moduloV1 = sqrt(pow(v1.x, 2) + pow(v1.y, 2));
-			moduloV2 = sqrt(pow(v2.x, 2) + pow(v2.y, 2));
+			prodVec = vecReferncia.x*vecDireccion.x + vecReferncia.y*vecDireccion.y;
+			moduloV1 = sqrt(pow(vecReferncia.x, 2) + pow(vecReferncia.y, 2));
+			moduloV2 = sqrt(pow(vecDireccion.x, 2) + pow(vecDireccion.y, 2));
 			prodMod = moduloV1 * moduloV2;
 			nave.rotacion = acos(prodVec / (prodMod));
 
@@ -85,12 +77,12 @@ namespace Juego {
 
 		void moverNave() {
 			//ROTACION MOUSE--------------------------------------------------
-			calcuarAngRotacion();				
-		
-			//MOVIMIENTO TECLADO-------------------------------------------
-			if (IsMouseButtonDown(MOUSE_RIGHT_BUTTON)){
-				nave.aceleracion.x += sin(nave.rotacion*DEG2RAD)*aceleracionBase;
-				nave.aceleracion.y += cos(nave.rotacion*DEG2RAD)*aceleracionBase;
+			calcuarAngRotacion();
+
+			//MOVIMIENTO MOUSE-------------------------------------------
+			if (IsMouseButtonDown(MOUSE_RIGHT_BUTTON)) {
+				nave.aceleracion.x += sin(nave.rotacion*DEG2RAD)*(aceleracionBase*GetFrameTime());
+				nave.aceleracion.y += cos(nave.rotacion*DEG2RAD)*(aceleracionBase*GetFrameTime());
 				nave.aceleracion.x *= GetFrameTime();
 				nave.aceleracion.y *= GetFrameTime();
 			}
@@ -118,28 +110,22 @@ namespace Juego {
 			destRec.y = nave.pos.y;
 		}
 
-		//MOVIMIENTO MOUSE---------------------------------------------------------
-
-
 		void actualizarNave() {
 			moverNave();
 			chequearColisionBordes();
 		}
 
 		void dibujarNave() {
-			//DrawTriangle(puntoDisparo, puntoBase1, puntoBase2, nave.color);
+			//DrawCircle(destRec.x,destRec.y,destRec.height/2,RED);
 			DrawTexturePro(nave.textura, sourceRec, destRec, origen ,nave.rotacion, WHITE);
 		}
 
 		void inicializarNave() {
-			tamanioBaseNave = 0.035f*(float)(GetScreenWidth());
-			altoNave = (tamanioBaseNave / 2) / tanf(30 * DEG2RAD);
 			nave.textura = LoadTexture("res/nave.png");
 			crearJugador();
 			destRec = { nave.pos.x, nave.pos.y, (float)nave.textura.width * 2, (float)nave.textura.height * 2 };
 			sourceRec = { 0.0f,0.0f, (float)nave.textura.width, (float)nave.textura.height };
 			origen = { (float)nave.textura.width,(float)nave.textura.height };
-			SetMousePosition({nave.pos.x , nave.pos.y });
 		}
 
 		void desinicializarNave() {

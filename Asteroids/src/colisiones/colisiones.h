@@ -3,8 +3,8 @@
 
 namespace Juego {
 	namespace Colisiones {
-
+		void actualizarColisiones();
 	}
 }
 
-#endif // !COLISIONES_H
+#endif

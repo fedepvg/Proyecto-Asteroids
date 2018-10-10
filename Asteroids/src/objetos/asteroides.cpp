@@ -101,7 +101,7 @@ namespace Juego {
 				asteroideGrande[i].radio = radioAstGrandes;
 				asteroideGrande[i].activar = true;
 				asteroideGrande[i].color=MAROON;
-				asteroideGrande[i].textura = LoadTexture("res/asteroideGrande.png");
+				//asteroideGrande[i].textura = LoadTexture("res/asteroideGrande.png");
 			}
 
 			for (int i = 0; i < maxAstMedianos; i++)
@@ -111,7 +111,7 @@ namespace Juego {
 				asteroideMediano[i].radio = radioAstMedianos;
 				asteroideMediano[i].activar = false;
 				asteroideMediano[i].color = RAYWHITE;
-				asteroideMediano[i].textura = LoadTexture("res/asteroideMed.png");
+				//asteroideMediano[i].textura = LoadTexture("res/asteroideMed.png");
 			}
 
 			for (int i = 0; i < maxAstChicos; i++)
@@ -121,7 +121,7 @@ namespace Juego {
 				asteroideChico[i].radio = radioAstChicos;
 				asteroideChico[i].activar = false;
 				asteroideChico[i].color = RAYWHITE;
-				asteroideChico[i].textura = LoadTexture("res/asteroideChico.png");
+				//asteroideChico[i].textura = LoadTexture("res/asteroideChico.png");
 			}
 		}
 
