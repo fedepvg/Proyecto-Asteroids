@@ -12,7 +12,7 @@ namespace Juego {
 			float rotacion;
 			Color color;
 			Texture2D textura;
-			Rectangle escalaYPos;
+			Rectangle posYEscala;
 			Rectangle spriteFuente;
 			Vector2 origen;
 			bool perdio;

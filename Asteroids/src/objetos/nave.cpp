@@ -32,7 +32,7 @@ namespace Juego {
 			nave.rotacion = 0.0f;
 			nave.color = BLACK;
 			nave.textura = LoadTexture("res/nave.png");
-			nave.escalaYPos = { nave.pos.x, nave.pos.y, (float)nave.textura.width * 2, (float)nave.textura.height * 2 };
+			nave.posYEscala = { nave.pos.x, nave.pos.y, (float)nave.textura.width * 2, (float)nave.textura.height * 2 };
 			nave.spriteFuente = { 0.0f,0.0f, (float)nave.textura.width, (float)nave.textura.height };
 			nave.origen = { (float)nave.textura.width,(float)nave.textura.height };
 			nave.perdio = false;
@@ -109,8 +109,8 @@ namespace Juego {
 
 			nave.pos.x += nave.velocidad.x;
 			nave.pos.y -= nave.velocidad.y;
-			nave.escalaYPos.x = nave.pos.x;
-			nave.escalaYPos.y = nave.pos.y;
+			nave.posYEscala.x = nave.pos.x;
+			nave.posYEscala.y = nave.pos.y;
 		}
 
 		void actualizarNave() {
@@ -119,7 +119,7 @@ namespace Juego {
 		}
 
 		void dibujarNave() {
-			DrawTexturePro(nave.textura, nave.spriteFuente, nave.escalaYPos, nave.origen ,nave.rotacion, WHITE);
+			DrawTexturePro(nave.textura, nave.spriteFuente, nave.posYEscala, nave.origen ,nave.rotacion, WHITE);
 		}
 
 		void inicializarNave() {

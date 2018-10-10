@@ -16,7 +16,7 @@ namespace Juego {
 		void actualizarColisiones() {
 			//Nave con asteroides------------------------------
 			for (int i = 0; i < maxAsteroides; i++)	{
-				if (CheckCollisionCircles(nave.pos, nave.escalaYPos.width / 2, asteroide[i].pos, asteroide[i].radio)) {
+				if (CheckCollisionCircles(nave.pos, nave.posYEscala.width / 2, asteroide[i].pos, asteroide[i].radio)) {
 					nave.perdio = true;
 					break;
 				}

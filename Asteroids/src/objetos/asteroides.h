@@ -12,14 +12,12 @@ namespace Juego {
 			bool activo;
 			Color color;
 			Texture2D textura;
-			Rectangle escalaYPos;
+			Rectangle posYEscala;
 			Rectangle spriteFuente;
 			Vector2 origen;
 		};
 
 		extern const int maxAsteroides;
-		extern int asteroidesMedActivos;
-		extern int asteroidesChicosActivos;
 		extern int asteroidesDestruidos;
 		extern Asteroides asteroide[];
 		void inicializarAsteroides();
