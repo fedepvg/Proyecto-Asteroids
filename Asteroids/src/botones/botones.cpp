@@ -177,7 +177,18 @@ namespace Juego {
 				if (CheckCollisionPointRec(GetMousePosition(), botonJuego[opcSilenciar].posYTamanio)) {
 					botonJuego[opcSilenciar].estaSeleccionada = true;
 					if (IsMouseButtonReleased(MOUSE_LEFT_BUTTON)) {
-
+						if (hayVolumen) {
+							SetSoundVolume(sonidoDisparo, 0.0f);
+							SetSoundVolume(sonidoExplosionAsteroide, 0.0f);
+							SetSoundVolume(sonidoExplosionDisparo, 0.0f);
+							hayVolumen = false;
+						}else {
+							SetSoundVolume(sonidoDisparo, 0.5f);
+							SetSoundVolume(sonidoExplosionAsteroide, 0.5f);
+							SetSoundVolume(sonidoExplosionDisparo, 0.5f);
+							hayVolumen = true;
+						}
+						
 					}
 				}
 				else {

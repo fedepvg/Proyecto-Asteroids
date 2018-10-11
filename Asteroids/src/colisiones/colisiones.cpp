@@ -4,6 +4,7 @@
 #include "objetos/disparo.h"
 #include "objetos/nave.h"
 #include "oleadas/oleadas.h"
+#include "pantallas/pantallaJuego.h"
 
 namespace Juego {
 	namespace Colisiones {
@@ -11,6 +12,7 @@ namespace Juego {
 		using namespace Nave;
 		using namespace Disparo;
 		using namespace Oleadas;
+		using namespace PantallaJuego;
 
 		void actualizarColisiones() {
 			//Nave con asteroides------------------------------
@@ -18,6 +20,7 @@ namespace Juego {
 				if (asteroide[i].activo) {
 					if (CheckCollisionCircles(nave.pos, nave.posYEscala.width / 2, asteroide[i].pos, asteroide[i].radio)) {
 						nave.perdio = true;
+						PlaySound(sonidoExplosionAsteroide);
 						break;
 					}
 				}
@@ -31,6 +34,7 @@ namespace Juego {
 							asteroidesDestruidos++;
 							disparo[j].activo = false;
 							asteroide[i].activo = false;
+							PlaySound(sonidoExplosionDisparo);
 							break;
 						}
 					}

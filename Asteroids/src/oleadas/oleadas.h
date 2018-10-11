@@ -9,7 +9,7 @@ namespace Juego {
 			bool activa;
 		};
 
-		#define cantOleadas 10
+		extern const int cantOleadas;
 		extern float temporizador;
 		extern Oleadas oleada[];
 		extern int oleadaActual;

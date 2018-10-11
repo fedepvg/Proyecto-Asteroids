@@ -7,6 +7,7 @@
 namespace Juego {
 	namespace Asteroides {
 		using namespace Oleadas;
+		using namespace PantallaJuego;
 
 		static void chequearColisionBordes();
 		static bool chequearPosNuevoAst(int i);
@@ -79,6 +80,7 @@ namespace Juego {
 
 		void desinicializarAsteroides() {
 			UnloadTexture(spriteAsteroide);
+			//UnloadSound(sonidoExplosionAsteroide);
 		}
 
 		void moverAsteroides() {
@@ -98,6 +100,7 @@ namespace Juego {
 			spriteAsteroide = LoadTexture("res/asteroide.png");
 			crearAsteroides();
 			asteroidesDestruidos = 0;
+			sonidoExplosionAsteroide = LoadSound("res/explosionAsteroide.wav");
 		}
 
 		void actualizarAsteroides() {

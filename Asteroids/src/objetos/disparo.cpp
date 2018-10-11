@@ -4,10 +4,12 @@
 
 #include "raylib.h"
 #include "nave.h"
+#include "pantallas/pantallaJuego.h"
 
 namespace Juego {
 	namespace Disparo {
 		using namespace Nave;
+		using namespace PantallaJuego;
 
 		static void crearDisparos();
 		static void disparar();
@@ -32,6 +34,8 @@ namespace Juego {
 		void inicializarDisparos() {
 			radioDisparo = 0.000008*((float)GetScreenWidth()*GetScreenHeight());
 			crearDisparos();
+			sonidoDisparo = LoadSound("res/disparo.wav");
+			sonidoExplosionDisparo = LoadSound("res/explosionDisparo.wav");
 		}
 
 		void actualizarDisparos(){
@@ -47,6 +51,7 @@ namespace Juego {
 						disparo[i].pos = nave.pos;
 						disparo[i].activo = true;
 						disparo[i].rotacion = nave.rotacion;
+						PlaySound(sonidoDisparo);
 						break;
 					}
 				}
@@ -87,6 +92,11 @@ namespace Juego {
 					DrawCircle(disparo[i].pos.x, disparo[i].pos.y,disparo[i].radio,disparo[i].color);
 				}
 			}
+		}
+		
+		void desinicializarDisparos() {
+			/*UnloadSound(sonidoDisparo);
+			UnloadSound(sonidoExplosionDisparo);*/
 		}
 	}
 }

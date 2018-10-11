@@ -5,7 +5,6 @@ namespace Juego {
 		void inicializarMenu();
 		void actualizarMenu();
 		void dibujarMenu();
-		void desinicializarMenu();
 	}
 }
 #endif

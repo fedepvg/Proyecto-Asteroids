@@ -9,7 +9,7 @@ namespace Juego {
 		using namespace Asteroides;
 		using namespace Nave;
 
-		//const int cantOleadas = 10;
+		const int cantOleadas = 10;
 		float temporizador;
 		bool nuevaOleada=false;
 		Oleadas oleada[cantOleadas];
@@ -22,7 +22,7 @@ namespace Juego {
 				if (i == 0) {
 					oleada[i].maxAstPosibles = 4;
 					oleada[i].activa = true;
-					oleada[i].duracion = 20.0f;
+					oleada[i].duracion = 2.0f;
 				}else {
 					oleada[i].maxAstPosibles = oleada[i-1].maxAstPosibles + 4;
 					oleada[i].activa = false;

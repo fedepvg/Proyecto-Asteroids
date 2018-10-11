@@ -23,6 +23,10 @@ namespace Juego {
 		fases fase = inicio;
 		static bool desinicializar = false;
 		bool pausa = false;
+		Sound sonidoDisparo;
+		Sound sonidoExplosionAsteroide;
+		Sound sonidoExplosionDisparo;
+		bool hayVolumen=true;
 
 		static bool jugadorPerdio();
 
@@ -37,7 +41,7 @@ namespace Juego {
 
 		void actualizarJuego() {
 			actualizarBotones();
-			if (!pausa) {
+			if (!pausa && fase==juego) {
 				actualizarNave();
 				actualizarDisparos();
 				actualizarAsteroides();
@@ -47,12 +51,7 @@ namespace Juego {
 			if (jugadorPerdio()) {
 				if (!desinicializar) {
 					desinicializar = true;
-				}
-				else {
 					fase = fin;
-					estado = gameOver;
-					estaInicializado = false;
-					desinicializar = false;
 				}
 			}
 			if (fase==salirAMenu) {
@@ -81,7 +80,7 @@ namespace Juego {
 		}
 
 		void inicializarPantJuego() {
-			if (!estaInicializado||fase==inicio) {
+			if (!estaInicializado || fase == inicio) {
 				inicializarNave();
 				inicializarAsteroides();
 				inicializarOleadas();
@@ -89,14 +88,36 @@ namespace Juego {
 				inicializarBotones();
 				fase = juego;
 				pausa = false;
+				if (!hayVolumen) {
+					SetSoundVolume(sonidoDisparo, 0.0f);
+					SetSoundVolume(sonidoExplosionAsteroide, 0.0f);
+					SetSoundVolume(sonidoExplosionDisparo, 0.0f);
+					hayVolumen = false;
+				}
+				else {
+					SetSoundVolume(sonidoDisparo, 0.5f);
+					SetSoundVolume(sonidoExplosionAsteroide, 0.5f);
+					SetSoundVolume(sonidoExplosionDisparo, 0.5f);
+					hayVolumen = true;
+				}
 			}
 			estaInicializado = true;
 		}
 
 		void desinicializarPantJuego() {
-			if (desinicializar) {
+			if (desinicializar && !IsSoundPlaying(sonidoExplosionAsteroide)) {
 				desinicializarNave();
 				desinicializarAsteroides();
+				desinicializarDisparos();
+				UnloadSound(sonidoExplosionAsteroide);
+				UnloadSound(sonidoDisparo);
+				UnloadSound(sonidoExplosionDisparo);
+			
+				if (jugadorPerdio()) {
+					estado = gameOver;
+					desinicializar = false;
+					estaInicializado = false;
+				}	
 			}
 		}
 	}
