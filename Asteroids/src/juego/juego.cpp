@@ -81,9 +81,6 @@ namespace Juego {
 
 	void desinicializarPantallas() {
 		switch (estado) {
-		case menu:
-			Menu::desinicializarMenu();
-			break;
 		case partida:
 			desinicializarPantJuego();
 			break;
