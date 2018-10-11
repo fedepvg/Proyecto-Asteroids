@@ -22,7 +22,6 @@ namespace Juego {
 		static bool estaInicializado = false;
 		fases fase = inicio;
 		static bool desinicializar = false;
-		static int opcionElegida = 0;
 		bool pausa = false;
 
 		static bool jugadorPerdio();
@@ -37,42 +36,43 @@ namespace Juego {
 		}
 
 		void actualizarJuego() {
+			actualizarBotones();
 			if (!pausa) {
 				actualizarNave();
 				actualizarDisparos();
 				actualizarAsteroides();
 				actualizarOleadas();
 				actualizarColisiones();
-				if (jugadorPerdio()) {
-					if (!desinicializar) {
-						desinicializar = true;
-					}
-					else {
-						fase = fin;
-						estado = gameOver;
-						estaInicializado = false;
-						desinicializar = false;
-					}
+			}
+			if (jugadorPerdio()) {
+				if (!desinicializar) {
+					desinicializar = true;
 				}
-				if (IsKeyPressed(KEY_M) || opcionElegida == KEY_M) {
-					if (!desinicializar) {
-						desinicializar = true;
-						opcionElegida = KEY_M;
-					}
-					else {
-						estado = menu;
-						estaInicializado = false;
-						desinicializar = false;
-						opcionElegida = 0;
-					}
+				else {
+					fase = fin;
+					estado = gameOver;
+					estaInicializado = false;
+					desinicializar = false;
 				}
-			}	
+			}
+			if (fase==salirAMenu) {
+				if (!desinicializar) {
+					desinicializar = true;
+				}
+				else {
+					estado = menu;
+					estaInicializado = false;
+					desinicializar = false;
+				}
+			}
+				
 		}
 
 		void dibujarJuego() {
 			dibujarDisparos();
 			dibujarNave();
 			dibujarAsteroides();
+			dibujarBotones();
 
 			const double tamanioLetras = (GetScreenHeight()*GetScreenWidth())*0.0042 / 100;
 
@@ -86,7 +86,9 @@ namespace Juego {
 				inicializarAsteroides();
 				inicializarOleadas();
 				inicializarDisparos();
+				inicializarBotones();
 				fase = juego;
+				pausa = false;
 			}
 			estaInicializado = true;
 		}

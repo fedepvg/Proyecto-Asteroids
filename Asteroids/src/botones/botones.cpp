@@ -9,10 +9,14 @@
 
 namespace Juego {
 	namespace Botones {
+		using namespace PantallaJuego;
+
 		static const int cantBotonesMenu = 3;
 		static Botones botonMenu[cantBotonesMenu];
 		static const int cantBotonesJuego = 2;
 		static Botones botonJuego[cantBotonesJuego];
+		static const int cantBotonesPausa = 3;
+		static Botones botonPausa[cantBotonesPausa];
 		static const int cantBotonesCreditos = 1;
 		static Botones botonCreditos[cantBotonesCreditos];
 		static const int cantBotonesGO = 3;
@@ -37,8 +41,8 @@ namespace Juego {
 			botonMenu[opcJugar].opcion = "Jugar";
 			botonMenu[opcCreditos].posYTamanio.y = GetScreenHeight()*0.6f;
 			botonMenu[opcCreditos].opcion = "Creditos";
-			botonMenu[opcSalir].posYTamanio.y = GetScreenHeight()*0.8f;
-			botonMenu[opcSalir].opcion = "Salir";
+			botonMenu[opcSalirMenu].posYTamanio.y = GetScreenHeight()*0.8f;
+			botonMenu[opcSalirMenu].opcion = "Salir";
 
 			for (int i = 0; i < cantBotonesMenu; i++) {
 				botonMenu[i].posYTamanio.x = GetScreenWidth() *0.3f;
@@ -60,14 +64,14 @@ namespace Juego {
 			else {
 				botonMenu[opcJugar].estaSeleccionada = false;
 			}
-			if (CheckCollisionPointRec(GetMousePosition(), botonMenu[opcSalir].posYTamanio)) {
-				botonMenu[opcSalir].estaSeleccionada = true;
+			if (CheckCollisionPointRec(GetMousePosition(), botonMenu[opcSalirMenu].posYTamanio)) {
+				botonMenu[opcSalirMenu].estaSeleccionada = true;
 				if (IsMouseButtonReleased(MOUSE_LEFT_BUTTON)) {
 					enJuego = false;
 				}
 			}
 			else {
-				botonMenu[opcSalir].estaSeleccionada = false;
+				botonMenu[opcSalirMenu].estaSeleccionada = false;
 			}
 			if (CheckCollisionPointRec(GetMousePosition(), botonMenu[opcCreditos].posYTamanio)) {
 				botonMenu[opcCreditos].estaSeleccionada = true;
@@ -96,59 +100,166 @@ namespace Juego {
 
 		//JUEGO-----------------------------------
 		void inicializarBotonesJuego() {
+			//En partida------------------------------------
+			botonJuego[opcPausar].posYTamanio.x = GetScreenWidth()*0.8f;
+			botonJuego[opcPausar].opcion = "Pausar";
+			botonJuego[opcSilenciar].posYTamanio.x = GetScreenWidth()*0.9f;
+			botonJuego[opcSilenciar].opcion = "Sonido: I/O";
 
+			for (int i = 0; i < cantBotonesJuego; i++) {
+				botonJuego[i].posYTamanio.y = GetScreenHeight() *0.01f;
+				botonJuego[i].posYTamanio.width = GetScreenWidth() *0.09f;
+				botonJuego[i].posYTamanio.height = GetScreenHeight() *0.06f;
+				botonJuego[i].estaSeleccionada = false;
+				botonJuego[i].centroX = botonJuego[i].posYTamanio.x + botonJuego[i].posYTamanio.width / 2;
+				botonJuego[i].centroY = botonJuego[i].posYTamanio.y + botonJuego[i].posYTamanio.height / 2;
+			}
+
+			//En pausa--------------------------------------------- 
+			botonPausa[opcDespausar].posYTamanio.y = GetScreenHeight()*0.4f;
+			botonPausa[opcDespausar].opcion = "Continuar";
+			botonPausa[opcVolverPausa].posYTamanio.y = GetScreenHeight()*0.6f;
+			botonPausa[opcVolverPausa].opcion = "Volver al Menu";
+			botonPausa[opcReiniciar].posYTamanio.y = GetScreenHeight()*0.8f;
+			botonPausa[opcReiniciar].opcion = "Reiniciar";
+
+			for (int i = 0; i < cantBotonesPausa; i++) {
+				botonPausa[i].posYTamanio.x = GetScreenWidth() *0.3f;
+				botonPausa[i].posYTamanio.width = GetScreenWidth() *0.4f;
+				botonPausa[i].posYTamanio.height = GetScreenHeight() *0.15f;
+				botonPausa[i].estaSeleccionada = false;
+				botonPausa[i].centroX = botonPausa[i].posYTamanio.x + botonPausa[i].posYTamanio.width / 2;
+				botonPausa[i].centroY = botonPausa[i].posYTamanio.y + botonPausa[i].posYTamanio.height / 2;
+			}
 		}
 
 		void actualizarBotonesJuego(){
+			//En Pausa---------------------------------
+			if (pausa) {
+				if (CheckCollisionPointRec(GetMousePosition(), botonPausa[opcDespausar].posYTamanio)) {
+					botonPausa[opcDespausar].estaSeleccionada = true;
+					if (IsMouseButtonReleased(MOUSE_LEFT_BUTTON)) {
+						pausa = false;
+					}
+				}
+				else {
+					botonPausa[opcDespausar].estaSeleccionada = false;
+				}
+				if (CheckCollisionPointRec(GetMousePosition(), botonPausa[opcReiniciar].posYTamanio)) {
+					botonPausa[opcReiniciar].estaSeleccionada = true;
+					if (IsMouseButtonReleased(MOUSE_LEFT_BUTTON)) {
+						fase = inicio;
+					}
+				}
+				else {
+					botonPausa[opcReiniciar].estaSeleccionada = false;
+				}
+				if (CheckCollisionPointRec(GetMousePosition(), botonPausa[opcVolverPausa].posYTamanio)) {
+					botonPausa[opcVolverPausa].estaSeleccionada = true;
+					if (IsMouseButtonReleased(MOUSE_LEFT_BUTTON)) {
+						fase = salirAMenu;
+					}
+				}
+				else {
+					botonPausa[opcVolverPausa].estaSeleccionada = false;
+				}
+			}else {
+			//En partida------------------------------------
+				if (CheckCollisionPointRec(GetMousePosition(), botonJuego[opcPausar].posYTamanio)) {
+					botonJuego[opcPausar].estaSeleccionada = true;
+					if (IsMouseButtonReleased(MOUSE_LEFT_BUTTON)) {
+						pausa = true;
+					}
+				}
+				else {
+					botonJuego[opcPausar].estaSeleccionada = false;
+				}
+				if (CheckCollisionPointRec(GetMousePosition(), botonJuego[opcSilenciar].posYTamanio)) {
+					botonJuego[opcSilenciar].estaSeleccionada = true;
+					if (IsMouseButtonReleased(MOUSE_LEFT_BUTTON)) {
 
+					}
+				}
+				else {
+					botonJuego[opcSilenciar].estaSeleccionada = false;
+				}
+			}
+			
 		}
 
 		void dibujarBotonesJuego() {
+			double tamanioLetras = (GetScreenHeight()*GetScreenWidth())*0.0052 / 100;
+			//En Pausa-----------------------------------------
+			if (pausa) {
+				tamanioLetras = (GetScreenHeight()*GetScreenWidth())*0.0052 / 100;
+				for (int i = 0; i < cantBotonesPausa; i++) {
+					if (botonPausa[i].estaSeleccionada) {
+						DrawRectangleRec(botonPausa[i].posYTamanio, DARKBLUE);
+					}
+					else {
+						DrawRectangleRec(botonPausa[i].posYTamanio, BLUE);
+					}
 
+					DrawText(botonPausa[i].opcion.c_str(), botonPausa[i].centroX - (MeasureText(botonPausa[i].opcion.c_str(), tamanioLetras) / 2), botonPausa[i].centroY, tamanioLetras, BLACK);
+				}
+			}else {
+			//En partida--------------------------------------
+				tamanioLetras = (GetScreenHeight()*GetScreenWidth())*0.0022 / 100;
+				for (int i = 0; i < cantBotonesJuego; i++) {
+					if (botonJuego[i].estaSeleccionada) {
+						DrawRectangleRec(botonJuego[i].posYTamanio, DARKBLUE);
+					}
+					else {
+						DrawRectangleRec(botonJuego[i].posYTamanio, BLUE);
+					}
+
+					DrawText(botonJuego[i].opcion.c_str(), botonJuego[i].centroX - (MeasureText(botonJuego[i].opcion.c_str(), tamanioLetras) / 2), botonJuego[i].centroY, tamanioLetras, BLACK);
+				}
+			}
 		}
 
 		//CREDITOS-------------------------------
 		void inicializarBotonesCreditos() {
-			botonCreditos[opcVolver].posYTamanio.x = GetScreenWidth() *0.3f;
-			botonCreditos[opcVolver].posYTamanio.y = GetScreenHeight() *0.8f;
-			botonCreditos[opcVolver].posYTamanio.width = GetScreenWidth() *0.4f;
-			botonCreditos[opcVolver].posYTamanio.height = GetScreenHeight() *0.15f;
-			botonCreditos[opcVolver].estaSeleccionada = false;
-			botonCreditos[opcVolver].centroX = botonCreditos[opcVolver].posYTamanio.x + botonCreditos[opcVolver].posYTamanio.width / 2;
-			botonCreditos[opcVolver].centroY = botonCreditos[opcVolver].posYTamanio.y + botonCreditos[opcVolver].posYTamanio.height / 2;
-			botonCreditos[opcVolver].opcion = "Volver";
+			botonCreditos[opcVolverCreditos].posYTamanio.x = GetScreenWidth() *0.3f;
+			botonCreditos[opcVolverCreditos].posYTamanio.y = GetScreenHeight() *0.8f;
+			botonCreditos[opcVolverCreditos].posYTamanio.width = GetScreenWidth() *0.4f;
+			botonCreditos[opcVolverCreditos].posYTamanio.height = GetScreenHeight() *0.15f;
+			botonCreditos[opcVolverCreditos].estaSeleccionada = false;
+			botonCreditos[opcVolverCreditos].centroX = botonCreditos[opcVolverCreditos].posYTamanio.x + botonCreditos[opcVolverCreditos].posYTamanio.width / 2;
+			botonCreditos[opcVolverCreditos].centroY = botonCreditos[opcVolverCreditos].posYTamanio.y + botonCreditos[opcVolverCreditos].posYTamanio.height / 2;
+			botonCreditos[opcVolverCreditos].opcion = "Volver";
 		}
 
 		void actualizarBotonesCreditos() {
-			if (CheckCollisionPointRec(GetMousePosition(), botonCreditos[opcVolver].posYTamanio)) {
-				botonCreditos[opcVolver].estaSeleccionada = true;
+			if (CheckCollisionPointRec(GetMousePosition(), botonCreditos[opcVolverCreditos].posYTamanio)) {
+				botonCreditos[opcVolverCreditos].estaSeleccionada = true;
 				if (IsMouseButtonReleased(MOUSE_LEFT_BUTTON)) {
 					estado = menu;
 				}
 			}
 			else {
-				botonCreditos[opcVolver].estaSeleccionada = false;
+				botonCreditos[opcVolverCreditos].estaSeleccionada = false;
 			}
 		}
 
 		void dibujarBotonesCreditos() {
 			double tamanioLetras = (GetScreenHeight()*GetScreenWidth())*0.0052 / 100;
-			if (botonCreditos[opcVolver].estaSeleccionada) {
-				DrawRectangleRec(botonCreditos[opcVolver].posYTamanio, DARKBLUE);
+			if (botonCreditos[opcVolverCreditos].estaSeleccionada) {
+				DrawRectangleRec(botonCreditos[opcVolverCreditos].posYTamanio, DARKBLUE);
 			}
 			else {
-				DrawRectangleRec(botonCreditos[opcVolver].posYTamanio, BLUE);
+				DrawRectangleRec(botonCreditos[opcVolverCreditos].posYTamanio, BLUE);
 			}
 
-			DrawText(botonCreditos[opcVolver].opcion.c_str(), botonCreditos[opcVolver].centroX - (MeasureText(botonCreditos[opcVolver].opcion.c_str(), tamanioLetras) / 2), botonCreditos[opcVolver].centroY, tamanioLetras, BLACK);
+			DrawText(botonCreditos[opcVolverCreditos].opcion.c_str(), botonCreditos[opcVolverCreditos].centroX - (MeasureText(botonCreditos[opcVolverCreditos].opcion.c_str(), tamanioLetras) / 2), botonCreditos[opcVolverCreditos].centroY, tamanioLetras, BLACK);
 		}
 
 		//GAME OVER------------------------------
 		void inicializarBotonesGO() {
 			botonGO[opcNuevaPartida].posYTamanio.y = GetScreenHeight()*0.4f;
 			botonGO[opcNuevaPartida].opcion = "Volver a Jugar";
-			botonGO[opcVolverMenu].posYTamanio.y = GetScreenHeight()*0.6f;
-			botonGO[opcVolverMenu].opcion = "Volver al Menu";
+			botonGO[opcVolverGO].posYTamanio.y = GetScreenHeight()*0.6f;
+			botonGO[opcVolverGO].opcion = "Volver al Menu";
 			botonGO[opcSalirGO].posYTamanio.y = GetScreenHeight()*0.8f;
 			botonGO[opcSalirGO].opcion = "Salir";
 
@@ -181,14 +292,14 @@ namespace Juego {
 			else {
 				botonGO[opcSalirGO].estaSeleccionada = false;
 			}
-			if (CheckCollisionPointRec(GetMousePosition(), botonGO[opcVolverMenu].posYTamanio)) {
-				botonGO[opcVolverMenu].estaSeleccionada = true;
+			if (CheckCollisionPointRec(GetMousePosition(), botonGO[opcVolverGO].posYTamanio)) {
+				botonGO[opcVolverGO].estaSeleccionada = true;
 				if (IsMouseButtonReleased(MOUSE_LEFT_BUTTON)) {
 					estado = menu;
 				}
 			}
 			else {
-				botonGO[opcVolverMenu].estaSeleccionada = false;
+				botonGO[opcVolverGO].estaSeleccionada = false;
 			}
 		}
 
