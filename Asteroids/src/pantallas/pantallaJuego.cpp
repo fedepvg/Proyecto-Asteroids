@@ -66,14 +66,11 @@ namespace Juego {
 			dibujarDisparos();
 			dibujarNave();
 			dibujarAsteroides();
-			
-			char instrucciones[] = "El Jugador se mueve con el click derecho del mouse y dispara con el izquierdo";
-			char menu[] = "Pulse M para volver al menu";
 
-			const double tamanioLetras = (GetScreenHeight()*GetScreenWidth())*0.0037 / 100;
-			DrawText(instrucciones, 0 + tamanioLetras, GetScreenHeight() - tamanioLetras, tamanioLetras, DARKGRAY);
-			DrawText(menu, GetScreenWidth() - MeasureText(menu, tamanioLetras), GetScreenHeight() - tamanioLetras, tamanioLetras, DARKGRAY);
+			const double tamanioLetras = (GetScreenHeight()*GetScreenWidth())*0.0042 / 100;
+
 			DrawText(FormatText("%f", temporizador),0+tamanioLetras,0+tamanioLetras,tamanioLetras,DARKGRAY);
+			DrawText(FormatText("%i", oleadaActual+1), GetScreenWidth() / 2, 0 + tamanioLetras, tamanioLetras, DARKGRAY);
 		}
 
 		void inicializarPantJuego() {

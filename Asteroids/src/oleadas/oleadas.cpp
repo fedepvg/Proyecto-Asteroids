@@ -22,11 +22,11 @@ namespace Juego {
 				if (i == 0) {
 					oleada[i].maxAstPosibles = 4;
 					oleada[i].activa = true;
-					oleada[i].duracion = 30.0f;
+					oleada[i].duracion = 2.0f;
 				}else {
 					oleada[i].maxAstPosibles = oleada[i-1].maxAstPosibles + 4;
 					oleada[i].activa = false;
-					oleada[i].duracion = oleada[i - 1].duracion + 3.0f;
+					oleada[i].duracion = oleada[i - 1].duracion + 0.5f;
 				}
 			}
 			for (int i = 0; i < oleada[oleadaActual].maxAstPosibles; i++) {

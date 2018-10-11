@@ -25,7 +25,7 @@ namespace Juego {
 
 			//Asteroides con disparos----------------------------
 			for (int i = 0; i < oleada[oleadaActual].maxAstPosibles; i++) {
-				for (int j = 0; j < cantMaxDisparos; j++){
+				for (int j = 1; j <= cantMaxDisparos; j++){
 					if (disparo[j].activo && asteroide[i].activo) {
 						if (CheckCollisionCircles(disparo[j].pos, disparo[j].radio, asteroide[i].pos, asteroide[i].radio)) {
 							asteroidesDestruidos++;
