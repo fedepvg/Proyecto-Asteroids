@@ -3,6 +3,7 @@
 #include <cmath>
 
 #include "raylib.h"
+#include "pantallas/pantallaJuego.h"
 
 namespace Juego {
 	namespace Nave {
@@ -117,8 +118,12 @@ namespace Juego {
 		}
 
 		void dibujarNave() {
-			//DrawCircle(nave.pos.x,nave.pos.y, nave.posYEscala.width / 2,RED);
-			DrawTexturePro(nave.textura, nave.spriteFuente, nave.posYEscala, nave.origen ,nave.rotacion, WHITE);
+			if (!PantallaJuego::pausa) {
+				DrawTexturePro(nave.textura, nave.spriteFuente, nave.posYEscala, nave.origen, nave.rotacion, WHITE);
+			}else {
+				DrawTexturePro(nave.textura, nave.spriteFuente, nave.posYEscala, nave.origen, nave.rotacion, LIGHTGRAY);
+			}
+			
 		}
 
 		void inicializarNave() {

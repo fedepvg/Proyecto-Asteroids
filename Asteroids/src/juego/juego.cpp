@@ -34,6 +34,12 @@ namespace Juego {
 		case partida:
 			inicializarPantJuego();
 			break;
+		case gameOver:
+			GameOver::inicializarGO();
+			break;
+		case creditos:
+			Creditos::inicializarCreditos();
+			break;
 		default:break;
 		}
 	}

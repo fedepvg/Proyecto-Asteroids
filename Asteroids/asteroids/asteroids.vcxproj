@@ -137,6 +137,7 @@ xcopy "$(SolutionDir)res" "$(TargetDir)res"/E /y /s</Command>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\src\botones\botones.cpp" />
     <ClCompile Include="..\src\colisiones\colisiones.cpp" />
     <ClCompile Include="..\src\juego\juego.cpp" />
     <ClCompile Include="..\src\main.cpp" />
@@ -150,6 +151,7 @@ xcopy "$(SolutionDir)res" "$(TargetDir)res"/E /y /s</Command>
     <ClCompile Include="..\src\pantallas\pantallaMenu.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\src\botones\botones.h" />
     <ClInclude Include="..\src\colisiones\colisiones.h" />
     <ClInclude Include="..\src\juego\juego.h" />
     <ClInclude Include="..\src\objetos\asteroides.h" />

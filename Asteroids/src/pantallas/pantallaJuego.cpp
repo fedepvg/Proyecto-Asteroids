@@ -7,6 +7,7 @@
 #include "objetos/disparo.h"
 #include "colisiones/colisiones.h"
 #include "oleadas/oleadas.h"
+#include "botones/botones.h"
 
 namespace Juego {
 	namespace PantallaJuego {
@@ -15,14 +16,16 @@ namespace Juego {
 		using namespace Disparo;
 		using namespace Colisiones;
 		using namespace Oleadas;
-
-		static bool jugadorPerdio();
+		using namespace Botones;
 
 		using namespace Juego;
 		static bool estaInicializado = false;
 		fases fase = inicio;
 		static bool desinicializar = false;
 		static int opcionElegida = 0;
+		bool pausa = false;
+
+		static bool jugadorPerdio();
 
 		bool jugadorPerdio() {
 			if (nave.perdio||nave.gano){
@@ -34,32 +37,36 @@ namespace Juego {
 		}
 
 		void actualizarJuego() {
-			actualizarNave();
-			actualizarDisparos();
-			actualizarAsteroides();
-			actualizarOleadas();
-			actualizarColisiones();
-			if (jugadorPerdio()) {
-				if (!desinicializar) {
-					desinicializar = true;
-				}else {
-					fase = fin;
-					estado = gameOver;
-					estaInicializado = false;
-					desinicializar = false;
+			if (!pausa) {
+				actualizarNave();
+				actualizarDisparos();
+				actualizarAsteroides();
+				actualizarOleadas();
+				actualizarColisiones();
+				if (jugadorPerdio()) {
+					if (!desinicializar) {
+						desinicializar = true;
+					}
+					else {
+						fase = fin;
+						estado = gameOver;
+						estaInicializado = false;
+						desinicializar = false;
+					}
 				}
-			}
-			if (IsKeyPressed(KEY_M) || opcionElegida == KEY_M) {
-				if (!desinicializar) {
-					desinicializar = true;
-					opcionElegida = KEY_M;
-				}else {
-					estado = menu;
-					estaInicializado = false;
-					desinicializar = false;
-					opcionElegida = 0;
+				if (IsKeyPressed(KEY_M) || opcionElegida == KEY_M) {
+					if (!desinicializar) {
+						desinicializar = true;
+						opcionElegida = KEY_M;
+					}
+					else {
+						estado = menu;
+						estaInicializado = false;
+						desinicializar = false;
+						opcionElegida = 0;
+					}
 				}
-			}
+			}	
 		}
 
 		void dibujarJuego() {
@@ -74,7 +81,7 @@ namespace Juego {
 		}
 
 		void inicializarPantJuego() {
-			if (!estaInicializado) {
+			if (!estaInicializado||fase==inicio) {
 				inicializarNave();
 				inicializarAsteroides();
 				inicializarOleadas();

@@ -2,6 +2,7 @@
 
 #include "raylib.h"
 #include "oleadas/oleadas.h"
+#include "pantallas/pantallaJuego.h"
 
 namespace Juego {
 	namespace Asteroides {
@@ -107,8 +108,11 @@ namespace Juego {
 		void dibujarAsteroides(){
 			for (int j = 0; j < oleada[oleadaActual].maxAstPosibles; j++){
 				if (asteroide[j].activo){
-					//DrawCircle(asteroide[i].pos.x, asteroide[i].pos.y, asteroide[i].radio, asteroide[i].color);
-					DrawTexturePro(asteroide[j].textura, asteroide[j].spriteFuente, asteroide[j].posYEscala, asteroide[j].origen, 0.0f, WHITE);
+					if (!PantallaJuego::pausa) {
+						DrawTexturePro(asteroide[j].textura, asteroide[j].spriteFuente, asteroide[j].posYEscala, asteroide[j].origen, 0.0f, WHITE);
+					}else {
+						DrawTexturePro(asteroide[j].textura, asteroide[j].spriteFuente, asteroide[j].posYEscala, asteroide[j].origen, 0.0f, LIGHTGRAY);
+					}
 				}
 			}			
 		}
