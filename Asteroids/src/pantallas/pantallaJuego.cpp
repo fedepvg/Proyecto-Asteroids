@@ -108,7 +108,6 @@ namespace Juego {
 			if (desinicializar && !IsSoundPlaying(sonidoExplosionAsteroide)) {
 				desinicializarNave();
 				desinicializarAsteroides();
-				desinicializarDisparos();
 				UnloadSound(sonidoExplosionAsteroide);
 				UnloadSound(sonidoDisparo);
 				UnloadSound(sonidoExplosionDisparo);

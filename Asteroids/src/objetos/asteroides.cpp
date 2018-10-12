@@ -23,7 +23,7 @@ namespace Juego {
 		Asteroides asteroide[32];
 
 		void chequearColisionBordes() {
-			for (int i = 0; i < oleada[cantOleadas-1].maxAstPosibles; i++){
+			for (int i = 0; i < 32/*oleada[cantOleadas-1].maxAstPosibles*/; i++){
 				if (asteroide[i].activo){
 					if (asteroide[i].pos.x <0 - asteroide[i].radio){
 						asteroide[i].pos.x = GetScreenWidth() + asteroide[i].radio;
@@ -70,7 +70,7 @@ namespace Juego {
 
 				asteroide[i].radio =(GetRandomValue(radioMinAst,radioMaxAst)/100000.0f) *(float)(GetScreenWidth()*GetScreenHeight());
 				asteroide[i].activo = false;
-				asteroide[i].color = MAROON;
+				//asteroide[i].color = MAROON;
 				asteroide[i].textura = spriteAsteroide;
 				asteroide[i].posYEscala = { asteroide[i].pos.x , asteroide[i].pos.y , asteroide[i].radio*2 , asteroide[i].radio*2 };
 				asteroide[i].spriteFuente = { 0.0f , 0.0f , (float)spriteAsteroide.width , (float)spriteAsteroide.height };
@@ -80,13 +80,12 @@ namespace Juego {
 
 		void desinicializarAsteroides() {
 			UnloadTexture(spriteAsteroide);
-			//UnloadSound(sonidoExplosionAsteroide);
 		}
 
 		void moverAsteroides() {
 			chequearColisionBordes();
 			
-			for (int i = 0; i < oleada[cantOleadas-1].maxAstPosibles; i++){
+			for (int i = 0; i < /*oleada[cantOleadas-1].maxAstPosibles*/32; i++){
 				if (asteroide[i].activo){
 					asteroide[i].pos.x += asteroide[i].velocidad.x*GetFrameTime();
 					asteroide[i].pos.y += asteroide[i].velocidad.y*GetFrameTime();

@@ -21,7 +21,7 @@ namespace Juego {
 		Balas disparo[cantMaxDisparos];
 
 		void crearDisparos() {
-			for (int i = 1; i <= cantMaxDisparos; i++){
+			for (int i = 0; i < cantMaxDisparos; i++){
 				disparo[i].pos = { 0.0f, 0.0f };
 				disparo[i].velocidad = { 0.0f,0.0f };
 				disparo[i].radio = 2.0f;
@@ -46,7 +46,7 @@ namespace Juego {
 
 		void disparar() {
 			if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
-				for (int i = 1; i <= cantMaxDisparos; i++)	{
+				for (int i = 0; i < cantMaxDisparos; i++)	{
 					if (!disparo[i].activo) {
 						disparo[i].pos = nave.pos;
 						disparo[i].activo = true;
@@ -59,7 +59,7 @@ namespace Juego {
 		}
 
 		void chequearColisionBordes() {
-			for (int i = 1; i <= cantMaxDisparos; i++)
+			for (int i = 0; i < cantMaxDisparos; i++)
 			{
 				if (disparo[i].pos.x < 0){
 					disparo[i].activo = false;
@@ -75,7 +75,7 @@ namespace Juego {
 		}
 
 		void moverDisparos() {
-			for (int i = 1; i <= cantMaxDisparos; i++){
+			for (int i = 0; i < cantMaxDisparos; i++){
 				if (disparo[i].activo) {
 					disparo[i].velocidad.x = sin(disparo[i].rotacion*DEG2RAD)*velocidadDisparo;
 					disparo[i].velocidad.y = cos(disparo[i].rotacion*DEG2RAD)*velocidadDisparo;
@@ -87,16 +87,11 @@ namespace Juego {
 		}
 
 		void dibujarDisparos() {
-			for (int i = 1; i <= cantMaxDisparos; i++){
+			for (int i = 0; i < cantMaxDisparos; i++){
 				if (disparo[i].activo) {
 					DrawCircle(disparo[i].pos.x, disparo[i].pos.y,disparo[i].radio,disparo[i].color);
 				}
 			}
-		}
-		
-		void desinicializarDisparos() {
-			/*UnloadSound(sonidoDisparo);
-			UnloadSound(sonidoExplosionDisparo);*/
 		}
 	}
 }

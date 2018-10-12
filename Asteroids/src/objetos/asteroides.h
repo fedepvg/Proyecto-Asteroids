@@ -10,7 +10,7 @@ namespace Juego {
 			Vector2 velocidad;
 			float radio;
 			bool activo;
-			Color color;
+			//Color color;
 			Texture2D textura;
 			Rectangle posYEscala;
 			Rectangle spriteFuente;

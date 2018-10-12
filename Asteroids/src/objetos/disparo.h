@@ -19,7 +19,6 @@ namespace Juego {
 		void inicializarDisparos();
 		void actualizarDisparos();
 		void dibujarDisparos();
-		void desinicializarDisparos();
 	}
 }
 
