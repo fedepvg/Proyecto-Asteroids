@@ -10,7 +10,6 @@ namespace Juego {
 			Vector2 velocidad;
 			Vector2 aceleracion;
 			float rotacion;
-			Color color;
 			Texture2D textura;
 			Rectangle posYEscala;
 			Rectangle spriteFuente;
@@ -20,7 +19,6 @@ namespace Juego {
 		};
 
 		extern Jug nave;
-		extern Vector2 puntoDisparo;
 		Jug crearJugador();
 		void actualizarNave();
 		void dibujarNave();

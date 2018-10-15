@@ -82,8 +82,8 @@ namespace Juego {
 		void inicializarPantJuego() {
 			if (!estaInicializado || fase == inicio) {
 				inicializarNave();
-				inicializarAsteroides();
 				inicializarOleadas();
+				inicializarAsteroides();
 				inicializarDisparos();
 				inicializarBotones();
 				fase = juego;

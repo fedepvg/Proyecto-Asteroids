@@ -16,7 +16,6 @@ namespace Juego {
 		static void chequearColisionBordes();
 		static void moverDisparos();
 		static const float velocidadDisparo = 350.0f;
-		int radioDisparo = 0;
 		const int cantMaxDisparos=4;
 		Balas disparo[cantMaxDisparos];
 
@@ -24,7 +23,7 @@ namespace Juego {
 			for (int i = 0; i < cantMaxDisparos; i++){
 				disparo[i].pos = { 0.0f, 0.0f };
 				disparo[i].velocidad = { 0.0f,0.0f };
-				disparo[i].radio = 2.0f;
+				disparo[i].radio = 0.000005*((float)GetScreenWidth()*GetScreenHeight());
 				disparo[i].rotacion = 0.0f;
 				disparo[i].activo = false;
 				disparo[i].color = BLACK;	
@@ -32,7 +31,6 @@ namespace Juego {
 		}
 
 		void inicializarDisparos() {
-			radioDisparo = 0.000008*((float)GetScreenWidth()*GetScreenHeight());
 			crearDisparos();
 			sonidoDisparo = LoadSound("res/disparo.wav");
 			sonidoExplosionDisparo = LoadSound("res/explosionDisparo.wav");

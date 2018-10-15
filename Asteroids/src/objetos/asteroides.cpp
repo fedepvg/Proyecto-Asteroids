@@ -20,10 +20,10 @@ namespace Juego {
 		static Texture2D spriteAsteroide;
 		int asteroidesDestruidos = 0;
 
-		Asteroides asteroide[32];
+		Asteroides asteroide[40];
 
 		void chequearColisionBordes() {
-			for (int i = 0; i < 32/*oleada[cantOleadas-1].maxAstPosibles*/; i++){
+			for (int i = 0; i < oleada[cantOleadas-1].maxAstPosibles; i++){
 				if (asteroide[i].activo){
 					if (asteroide[i].pos.x <0 - asteroide[i].radio){
 						asteroide[i].pos.x = GetScreenWidth() + asteroide[i].radio;
@@ -58,7 +58,7 @@ namespace Juego {
 		}
 
 		void crearAsteroides() {
-			for (int i = 0; i < /*oleada[cantOleadas-1].maxAstPosibles*/32; i++){
+			for (int i = 0; i < oleada[cantOleadas-1].maxAstPosibles; i++){
 				do {
 					asteroide[i].pos.x = GetRandomValue(0, GetScreenWidth());
 					asteroide[i].pos.y = GetRandomValue(0, GetScreenHeight());
@@ -70,7 +70,6 @@ namespace Juego {
 
 				asteroide[i].radio =(GetRandomValue(radioMinAst,radioMaxAst)/100000.0f) *(float)(GetScreenWidth()*GetScreenHeight());
 				asteroide[i].activo = false;
-				//asteroide[i].color = MAROON;
 				asteroide[i].textura = spriteAsteroide;
 				asteroide[i].posYEscala = { asteroide[i].pos.x , asteroide[i].pos.y , asteroide[i].radio*2 , asteroide[i].radio*2 };
 				asteroide[i].spriteFuente = { 0.0f , 0.0f , (float)spriteAsteroide.width , (float)spriteAsteroide.height };
@@ -85,7 +84,7 @@ namespace Juego {
 		void moverAsteroides() {
 			chequearColisionBordes();
 			
-			for (int i = 0; i < /*oleada[cantOleadas-1].maxAstPosibles*/32; i++){
+			for (int i = 0; i < oleada[cantOleadas-1].maxAstPosibles; i++){
 				if (asteroide[i].activo){
 					asteroide[i].pos.x += asteroide[i].velocidad.x*GetFrameTime();
 					asteroide[i].pos.y += asteroide[i].velocidad.y*GetFrameTime();
@@ -97,9 +96,12 @@ namespace Juego {
 
 		void inicializarAsteroides() {
 			spriteAsteroide = LoadTexture("res/asteroide.png");
-			crearAsteroides();
-			asteroidesDestruidos = 0;
 			sonidoExplosionAsteroide = LoadSound("res/explosionAsteroide.wav");
+			crearAsteroides();
+			for (int i = 0; i < oleada[oleadaActual].maxAstPosibles; i++) {
+				asteroide[i].activo = true;
+			}
+			asteroidesDestruidos = 0;
 		}
 
 		void actualizarAsteroides() {

@@ -12,30 +12,27 @@ namespace Juego {
 		void moverNave();
 		void chequearColisionBordes();
 		Jug nave;
-		static float altoNave;
-		static float tamanioBaseNave;
 		static const float aceleracionBase = 100.0f;
 		static const float velocidadMax = 200.0f;
 		static Vector2 vecReferncia;		//vector de la nave.pos al x=0 y=nave.pos
 		static Vector2 vecDireccion;		//vector de la nave.pos a la pos del mouse
 		static float prodVec;
-		static float moduloV1;
-		static float moduloV2;
+		static float moduloVRef;
+		static float moduloVDir;
 		static float prodMod;	
 
 		Jug crearJugador(){	
 			nave.pos.x = (float)GetScreenWidth() / 2;
-			nave.pos.y = (float)GetScreenHeight() / 2 - altoNave / 2;
+			nave.pos.y = (float)GetScreenHeight() / 2;
 			nave.velocidad.x = 0.0f;
 			nave.velocidad.y= 0.0f;
 			nave.aceleracion.x = 0;
 			nave.aceleracion.y = 0;
 			nave.rotacion = 0.0f;
-			nave.color = BLACK;
 			nave.textura = LoadTexture("res/nave.png");
-			nave.posYEscala = { nave.pos.x, nave.pos.y, (float)nave.textura.width * 2, (float)nave.textura.height * 2 };
-			nave.spriteFuente = { 0.0f,0.0f, (float)nave.textura.width, (float)nave.textura.height };
-			nave.origen = { (float)nave.textura.width,(float)nave.textura.height };
+			nave.posYEscala = { nave.pos.x, nave.pos.y, (float)nave.textura.width * 2, (float)nave.textura.height * 2 };	//los primeros dos valores dan la posicion y los otros escalan la textura al tamaño deseado
+			nave.spriteFuente = { 0.0f,0.0f, (float)nave.textura.width, (float)nave.textura.height };	//indica que parte del archivo de imagen se toma(por si hay una tira de sprites)
+			nave.origen = { (float)nave.textura.width,(float)nave.textura.height };	//pto de referencia para la rotacion
 			nave.perdio = false;
 			nave.gano = false;
 
@@ -65,9 +62,9 @@ namespace Juego {
 			vecDireccion.y = GetMouseY() - nave.pos.y;
 
 			prodVec = vecReferncia.x*vecDireccion.x + vecReferncia.y*vecDireccion.y;
-			moduloV1 = sqrt(pow(vecReferncia.x, 2) + pow(vecReferncia.y, 2));
-			moduloV2 = sqrt(pow(vecDireccion.x, 2) + pow(vecDireccion.y, 2));
-			prodMod = moduloV1 * moduloV2;
+			moduloVRef = sqrt(pow(vecReferncia.x, 2) + pow(vecReferncia.y, 2));
+			moduloVDir = sqrt(pow(vecDireccion.x, 2) + pow(vecDireccion.y, 2));
+			prodMod = moduloVRef * moduloVDir;
 			nave.rotacion = acos(prodVec / (prodMod));
 
 			nave.rotacion *= RAD2DEG;
