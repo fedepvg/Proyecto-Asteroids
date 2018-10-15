@@ -1,11 +1,7 @@
 #include "botones.h"
 
-#include "raylib.h"
 #include "juego/juego.h"
 #include "Pantallas/pantallaJuego.h"
-#include "Pantallas/pantallaMenu.h"
-#include "Pantallas/pantallaGameOver.h"
-#include "Pantallas/pantallaCreditos.h"
 
 namespace Juego {
 	namespace Botones {

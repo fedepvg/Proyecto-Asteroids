@@ -1,7 +1,6 @@
 #include "pantallaGameOver.h"
 
 #include "raylib.h"
-#include "Juego/juego.h"
 #include "objetos/nave.h"
 #include "botones/botones.h"
 

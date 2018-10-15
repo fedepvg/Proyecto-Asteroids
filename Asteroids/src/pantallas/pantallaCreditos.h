@@ -1,5 +1,6 @@
 #ifndef PANTALLACREDITOS_H
 #define PANTALLACREDITOS_H
+
 namespace Juego {
 	namespace Creditos {
 		void inicializarCreditos();
@@ -7,4 +8,5 @@ namespace Juego {
 		void dibujarCreditos();
 	}
 }
+
 #endif

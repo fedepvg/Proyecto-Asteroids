@@ -5,12 +5,11 @@
 
 namespace Juego {
 	namespace Asteroides {
-		struct Asteroides {
+		struct Asteroide {
 			Vector2 pos;
 			Vector2 velocidad;
 			float radio;
 			bool activo;
-			//Color color;
 			Texture2D textura;
 			Rectangle posYEscala;
 			Rectangle spriteFuente;
@@ -18,7 +17,7 @@ namespace Juego {
 		};
 
 		extern int asteroidesDestruidos;
-		extern Asteroides asteroide[];
+		extern Asteroide asteroide[];
 		void inicializarAsteroides();
 		void desinicializarAsteroides();
 		void actualizarAsteroides();

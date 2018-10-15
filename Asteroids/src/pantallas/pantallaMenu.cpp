@@ -1,9 +1,6 @@
 #include "pantallaMenu.h"
 
-#include <string>
-
 #include "raylib.h"
-#include "Juego/juego.h"
 #include "botones/botones.h"
 
 namespace Juego {

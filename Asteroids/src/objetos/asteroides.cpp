@@ -9,18 +9,19 @@ namespace Juego {
 		using namespace Oleadas;
 		using namespace PantallaJuego;
 
+		static const int velocidadAst = 200;
+		static int radioMaxAst = 8;
+		static int radioMinAst = 4;
+		static Texture2D spriteAsteroide;
+		static const int totalAsteroides = 40;
+		int asteroidesDestruidos = 0;
 		static void chequearColisionBordes();
 		static bool chequearPosNuevoAst(int i);
 		static bool chequearVelNuevoAst(int i);
 		static void moverAsteroides();
 		static void crearAsteroides();
-		static const int velocidadAst = 200;
-		static int radioMaxAst = 8;
-		static int radioMinAst = 4;
-		static Texture2D spriteAsteroide;
-		int asteroidesDestruidos = 0;
 
-		Asteroides asteroide[40];
+		Asteroide asteroide[totalAsteroides];
 
 		void chequearColisionBordes() {
 			for (int i = 0; i < oleada[cantOleadas-1].maxAstPosibles; i++){
@@ -112,7 +113,7 @@ namespace Juego {
 		void dibujarAsteroides(){
 			for (int j = 0; j < oleada[oleadaActual].maxAstPosibles; j++){
 				if (asteroide[j].activo){
-					if (!PantallaJuego::pausa) {
+					if (!pausa) {
 						DrawTexturePro(asteroide[j].textura, asteroide[j].spriteFuente, asteroide[j].posYEscala, asteroide[j].origen, 0.0f, WHITE);
 					}else {
 						DrawTexturePro(asteroide[j].textura, asteroide[j].spriteFuente, asteroide[j].posYEscala, asteroide[j].origen, 0.0f, LIGHTGRAY);

@@ -1,6 +1,8 @@
 #ifndef PANTALLAJUEGO_H
 #define PANTALLAJUEGO_H
+
 #include"raylib.h"
+
 namespace Juego {
 	namespace PantallaJuego {
 		enum fases { inicio, juego, salirAMenu, fin };
@@ -17,4 +19,5 @@ namespace Juego {
 		void desinicializarPantJuego();
 	}
 }
+
 #endif

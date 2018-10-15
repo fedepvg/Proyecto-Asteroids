@@ -19,25 +19,7 @@ namespace Juego {
 		static float prodVec;
 		static float moduloVRef;
 		static float moduloVDir;
-		static float prodMod;	
-
-		Jug crearJugador(){	
-			nave.pos.x = (float)GetScreenWidth() / 2;
-			nave.pos.y = (float)GetScreenHeight() / 2;
-			nave.velocidad.x = 0.0f;
-			nave.velocidad.y= 0.0f;
-			nave.aceleracion.x = 0;
-			nave.aceleracion.y = 0;
-			nave.rotacion = 0.0f;
-			nave.textura = LoadTexture("res/nave.png");
-			nave.posYEscala = { nave.pos.x, nave.pos.y, (float)nave.textura.width * 2, (float)nave.textura.height * 2 };	//los primeros dos valores dan la posicion y los otros escalan la textura al tamaño deseado
-			nave.spriteFuente = { 0.0f,0.0f, (float)nave.textura.width, (float)nave.textura.height };	//indica que parte del archivo de imagen se toma(por si hay una tira de sprites)
-			nave.origen = { (float)nave.textura.width,(float)nave.textura.height };	//pto de referencia para la rotacion
-			nave.perdio = false;
-			nave.gano = false;
-
-			return nave;
-		}
+		static float prodMod;
 		
 		void chequearColisionBordes() {
 			//Colision con bordes
@@ -124,7 +106,19 @@ namespace Juego {
 		}
 
 		void inicializarNave() {
-			crearJugador();
+			nave.pos.x = (float)GetScreenWidth() / 2;
+			nave.pos.y = (float)GetScreenHeight() / 2;
+			nave.velocidad.x = 0.0f;
+			nave.velocidad.y = 0.0f;
+			nave.aceleracion.x = 0;
+			nave.aceleracion.y = 0;
+			nave.rotacion = 0.0f;
+			nave.textura = LoadTexture("res/nave.png");
+			nave.posYEscala = { nave.pos.x, nave.pos.y, (float)nave.textura.width * 2, (float)nave.textura.height * 2 };	//los primeros dos valores dan la posicion y los otros escalan la textura al tamaño deseado
+			nave.spriteFuente = { 0.0f,0.0f, (float)nave.textura.width, (float)nave.textura.height };	//indica que parte del archivo de imagen se toma(por si hay una tira de sprites)
+			nave.origen = { (float)nave.textura.width,(float)nave.textura.height };	//pto de referencia para la rotacion
+			nave.perdio = false;
+			nave.gano = false;
 		}
 
 		void desinicializarNave() {

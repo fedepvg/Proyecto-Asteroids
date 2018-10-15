@@ -19,7 +19,6 @@ namespace Juego {
 		};
 
 		extern Jug nave;
-		Jug crearJugador();
 		void actualizarNave();
 		void dibujarNave();
 		void inicializarNave();

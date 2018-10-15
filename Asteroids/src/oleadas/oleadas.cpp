@@ -24,7 +24,7 @@ namespace Juego {
 				if (i == 0) {
 					oleada[i].maxAstPosibles = asteroidesPorOleada;
 					oleada[i].activa = true;
-					oleada[i].duracion = 10.0f;
+					oleada[i].duracion = 2.0f;
 				}else {
 					oleada[i].maxAstPosibles = oleada[i-1].maxAstPosibles + asteroidesPorOleada;
 					oleada[i].activa = false;

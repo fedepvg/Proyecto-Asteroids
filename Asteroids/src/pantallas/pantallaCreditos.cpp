@@ -1,7 +1,6 @@
 #include "pantallaCreditos.h"
 
 #include "raylib.h"
-#include "juego/juego.h"
 #include "botones/botones.h"
 
 namespace Juego {
